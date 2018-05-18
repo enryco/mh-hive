@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Header extends Component {
+class InnovationList extends Component {
 
   state = {
 
@@ -12,11 +12,11 @@ class Header extends Component {
     const { someProp } = this.props
     
     return (
-      <div className="mhh-header">
+      <div className="mhh-innovation-list">
       </div>
     )
   }
 }
 
-export default Header
+export default InnovationList
 

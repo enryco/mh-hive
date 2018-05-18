@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Header extends Component {
+class BackButton extends Component {
 
   state = {
 
@@ -12,11 +12,11 @@ class Header extends Component {
     const { someProp } = this.props
     
     return (
-      <div className="mhh-header">
+      <div className="mhh-back-button">
       </div>
     )
   }
 }
 
-export default Header
+export default BackButton
 
