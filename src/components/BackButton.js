@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class BackButton extends Component {
+class Button extends Component {
 
   state = {
 
@@ -8,15 +8,32 @@ class BackButton extends Component {
 
   render() {
 
-    const { someState } = this.state
-    const { someProp } = this.props
-    
     return (
-      <div className="mhh-back-button">
+      <div style={style.main} onClick={this.props.onClick} >
+        {this.props.children}
       </div>
     )
   }
 }
 
-export default BackButton
+export default Button
+
+
+const style = {
+  main: {
+    float: "left",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 44,
+    paddingLeft: 14,
+    paddingRight: 14,
+    background: '#43C6DB',
+    borderRadius: 6,
+    fontFamily: "OpenSans-Bold",
+    fontSize: 17,
+    color: "#FFFFFF",
+    textAlign: "center",
+  },
+}
 
