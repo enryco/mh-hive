@@ -9,7 +9,7 @@ class Button extends Component {
   render() {
 
     return (
-      <div style={style.main} onClick={this.props.onClick} >
+      <div style={styles.container} onClick={this.props.onClick} >
         {this.props.children}
       </div>
     )
@@ -19,8 +19,8 @@ class Button extends Component {
 export default Button
 
 
-const style = {
-  main: {
+const styles = {
+  container: {
     float: "left",
     display: 'flex',
     justifyContent: 'center',
