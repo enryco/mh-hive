@@ -1,27 +1,22 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
-class Button extends Component {
+const Button = props => {
 
-  state = {
+  const { match, history } = props
 
-  }
+  return <button style={styles.button} onClick={history.goBack} >⬅️ Back</button>
 
-  render() {
-
-    return (
-      <div style={styles.container} onClick={this.props.onClick} >
-        {this.props.children}
-      </div>
-    )
-  }
 }
 
-export default Button
+
+const ButtonWithRouter = withRouter(Button)
+
+export default ButtonWithRouter
 
 
 const styles = {
-  container: {
-    float: "left",
+  button: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -34,6 +29,11 @@ const styles = {
     fontSize: 17,
     color: "#FFFFFF",
     textAlign: "center",
+    border: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+    marginBottom: 10,
+    marginTop: 10,
   },
 }
 

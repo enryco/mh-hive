@@ -1,50 +1,92 @@
 import React, { Component } from 'react'
+import BackButton from './BackButton'
+import { withRouter } from 'react-router-dom'
+import _ from 'lodash'
+import ReactCountryFlag from 'react-country-flag'
+import Linkify from 'react-linkify'
 
 class SingleView extends Component {
 
-  renderItem = key => {
+  renderItem = (header, index, headersArray) => {
 
-  // exlude certain items
-  switch (key) {
-    case "id": return
-    default: break
-  }
+    const item = this.props.item
 
-  return (<div
-    key={key}
-    style={{
-      marginBottom: 10
-    }}>
-    <div style={{
-      fontFamily: 'OpenSans',
-      fontSize: 17,
-      fontWeight: 'bold',
-      color: '#db5644',
-    }}>{key}</div>
-    <div
+    let content = item[header]
+
+    // format or exclude some fields
+    switch (header) {
+      case "Country": content = <span><ReactCountryFlag code={item.isoCountryCode} />{' ' + content}</span>
+      default: break
+    }
+
+    // format certain fields
+    switch (content) {
+      case true: content = '✅ Yes'; break
+      case false: content = 'No'; break
+    }
+
+    return (<div
+      key={index}
       style={{
+        marginBottom: 10
+      }}>
+      <div style={{
         fontFamily: 'OpenSans',
-        fontSize: 15,
-        color: '#666666',
-      }}
-    >{this.props.item[key]}</div>
-  </div>)
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: '#db5644',
+      }}>{header}</div>
+      <div
+        style={{
+          fontFamily: 'OpenSans',
+          fontSize: 15,
+          color: '#666666',
+        }}
+      >{content}</div>
+    </div>)
 
-}
+  }
 
   render() {
 
     const { item } = this.props
 
+    if (!item) return null
+
     return (
-      <div className="mhh-single-view">
-        {
-          Object.keys(item).map(this.renderItem)
-        }
+      <div style={{ margin: 10 }} >
+        <BackButton />
+        <Linkify>
+          {
+            _.map(PolicyHeaders, this.renderItem)
+          }
+        </Linkify>
+        <BackButton />
       </div>
     )
   }
 }
 
-export default SingleView
+const SingleViewWithRouter = withRouter(SingleView)
 
+export default SingleViewWithRouter
+
+
+
+const PolicyHeaders = [
+  "Title",
+  "Category",
+  "Country",
+  "Region or city",
+  "Coordinates",
+  "Type of policy",
+  "Description",
+  "Date of introduction",
+  "Is menstruation specifically referenced?",
+  "How is menstruation specifically referenced?",
+  "Sector driving policy",
+  "Ministry group driving policy",
+  "Specific persons",
+  "Status of policy",
+  "Links",
+]
