@@ -55,13 +55,11 @@ class SingleView extends Component {
 
     return (
       <div style={{ margin: 10 }} >
-        <BackButton />
         <Linkify>
           {
             _.map(PolicyHeaders, this.renderItem)
           }
         </Linkify>
-        <BackButton />
       </div>
     )
   }

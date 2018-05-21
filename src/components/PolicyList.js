@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import ReactCountryFlag from 'react-country-flag'
-import { Link, Route, withRouter } from 'react-router-dom'
+import { Switch, Link, Route, withRouter } from 'react-router-dom'
+import slugify from 'slugify'
+
+import SecondarySearchBar from './SecondarySearchBar'
 
 import SingleView from './SingleView'
 
@@ -11,14 +14,25 @@ class PolicyList extends Component {
 
   }
 
+  filterByCategory = (items, category) => {
+    if  (category==='all') return items
+
+    return _.filter(items, item => {
+      const itemCategory = slugify(item.fields.Category, {lower: true})
+      return itemCategory === category
+    })
+  }
+
   render() {
 
     const { items } = this.props
 
     return (
-      <div style={{ paddingTop: 20 }}>
-        <Route exact path='/policy' render={() => _.map(items, (e, i) => <Item key={i} item={e} />)} />
-        <Route path={`/policy/:id`} render={({ match }) => <SingleView item={_.get(items, `${match.params.id}.fields`)} />} />
+      <div>
+        <Switch>
+          <Route exact path={`${this.props.match.url}/:category`} render={({ match }) => _.map(this.filterByCategory(items, match.params.category), (e, i) => <Item match={match} key={i} item={e} />)} />
+          <Route exact path={`${this.props.match.url}/:category/:id`} render={({ match }) => <SingleView item={_.get(items, `${match.params.id}.fields`)} />} />
+        </Switch>
       </div>
     )
   }
@@ -35,7 +49,7 @@ const Item = props => {
 
   const { isoCountryCode, Title, } = props.item.fields
 
-  return <Link to={`/policy/${props.item.id}`}  >
+  return <Link to={`${props.match.url}/${props.item.id}`}  >
     <div style={{
       display: 'flex',
       flexFlow: 'row',

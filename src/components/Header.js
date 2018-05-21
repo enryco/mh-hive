@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from '../assets/logo.png'
 import { withRouter } from 'react-router-dom'
+import BackButton from './BackButton'
 
 class Header extends Component {
 
@@ -12,18 +13,19 @@ class Header extends Component {
 
     const { onClick, location } = this.props
 
-    const category = location.pathname.split('/')[1]
+    const pillar = location.pathname.split('/')[1]
 
     return (
-      <div style={styles.wrapper}>
-        <div style={styles.main}>
-          <img src={logo} alt="" style={styles.img} onClick={onClick} />
-          <div style={styles.title}>
-            <div>hive</div>
-            {
-              category && <div style={styles.category} >{category}</div>
-            }
-          </div>
+      <div style={styles.main}>
+        {
+          pillar && <BackButton />
+        }
+        <img src={logo} alt="" style={styles.img} onClick={onClick} />
+        <div style={styles.title}>
+          <div>hive</div>
+          {
+            pillar && <div style={styles.category} >{pillar}</div>
+          }
         </div>
       </div>
     )
@@ -34,23 +36,16 @@ const HeaderWithRouter = withRouter(Header)
 export default HeaderWithRouter
 
 const styles = {
-  wrapper: {
-    marginBottom: 60,
-  },
   main: {
     height: 60,
     background: '#43c6db',
     display: 'flex',
     flexFlow: 'row',
     justifyContent: 'space-between',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
+    paddingLeft: 9,
   },
   img: {
     height: "100%",
-    paddingLeft: 9,
   },
   title: {
     display: 'flex',

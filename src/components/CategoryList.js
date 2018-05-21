@@ -1,15 +1,59 @@
 import React, { Component } from 'react'
 import Label from './Label'
+import slugify from 'slugify'
+import BackButton from './BackButton'
+import { Collapse } from 'react-collapse';
+import { presets } from 'react-motion';
+import { Route } from 'react-router-dom'
 
 class CategoryList extends Component {
 
   state = {
-    selected: ''
+    selected: 'Select category...',
+    isOpened: true,
+  }
+
+  styles = {
+    list: {
+      borderRadius: 6,
+      backgroundColor: '#ffffff',
+      border: 'solid 1px #43c6db',
+      minHeight: 44
+    }
+  }
+
+  navigate = (element) => {
+
+    const { history, match } = this.props
+
+    history.push(`${match.path}/${slugify(element, { lower: true })}`)
+    this.handleCollapse(element)
+  }
+
+  handleCollapse = (element) => {
+    const { isOpened, selected } = this.state
+    if (!element) element = selected
+
+    this.setState({
+      selected: element,
+      isOpened: !isOpened
+    })
+  }
+
+  componentDidMount() {
+    if (this.props.history.location.pathname.split('/').length >2) this.setState({ isOpened: false })
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.history.location.pathname.split('/').length < 3) this.setState({ isOpened: true })
   }
 
   render() {
 
-    const { items, onSelect } = this.props
+    const { items, history, match } = this.props
+    const { isOpened, selected } = this.state
+    const styles = this.styles
 
     return (
       <div>
@@ -17,25 +61,27 @@ class CategoryList extends Component {
           <div style={{ marginRight: 10 }}>⚗️</div>
           <div>Select a Category</div>
         </Label>
-        <div style={{
-          borderRadius: 6,
-          backgroundColor: '#ffffff',
-          border: 'solid 1px #43c6db',
-        }} >
+        <Collapse isOpened={this.state.isOpened} springConfig={presets.noWobble} style={styles.list} >
           {
-            items.map((e, i) => <Item
-              key={i}
-              index={i}
-              lastItem={i + 1 === items.length}
-              onClick={() => onSelect(e)}
-
-            >{e}</Item>)
+            isOpened ? null : <Item index={-2} onClick={() => this.handleCollapse()} >{selected}</Item>
           }
-        </div>
+          <div >
+            <Item index={0} onClick={() => this.navigate('All')} >All</Item>
+            {
+              items.map((e, i) => <Item
+                key={i}
+                index={i + 1}
+                lastItem={i + 1 === items.length}
+                onClick={() => this.navigate(e)}
+              >{e}</Item>)
+            }
+          </div>
+        </Collapse>
       </div>
     )
   }
 }
+
 
 export default CategoryList
 
@@ -54,7 +100,7 @@ const Item = props => {
       fontStretch: 'normal',
       lineHeight: 'normal',
       letterSpacing: 'normal',
-      color: '#333333',
+      color: props.index > -2 ? '#333333' : '#FFF',
       height: 44,
       borderBottomLeftRadius: props.lastItem ? 6 : 0,
       borderBottomRightRadius: props.lastItem ? 6 : 0,

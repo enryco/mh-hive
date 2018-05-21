@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faChevronLeft from '@fortawesome/fontawesome-free-solid/faChevronLeft'
 
 const Button = props => {
 
+  const goBack = () => history.push(history.location.pathname.slice(0, history.location.pathname.lastIndexOf('/')))
+
+
   const { match, history } = props
 
-  return <button style={styles.button} onClick={history.goBack} >⬅️ Back</button>
+  return <button style={styles.button} onClick={goBack} ><FontAwesomeIcon icon={faChevronLeft} style={{ marginRight: 5 }} />{'Back'}</button>
 
 }
 
@@ -23,11 +28,11 @@ const styles = {
     height: 44,
     paddingLeft: 14,
     paddingRight: 14,
-    background: '#43C6DB',
+    background: '#FFF',
     borderRadius: 6,
     fontFamily: "OpenSans-Bold",
-    fontSize: 17,
-    color: "#FFFFFF",
+    fontSize: 24,
+    color: '#db5644',
     textAlign: "center",
     border: 'none',
     outline: 'none',
@@ -36,4 +41,3 @@ const styles = {
     marginTop: 10,
   },
 }
-
