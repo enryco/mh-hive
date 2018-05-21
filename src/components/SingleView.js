@@ -3,7 +3,7 @@ import BackButton from './BackButton'
 import { withRouter } from 'react-router-dom'
 import _ from 'lodash'
 import ReactCountryFlag from 'react-country-flag'
-import Linkify from 'react-linkify'
+import Linkify from './general/Linkify'
 
 class SingleView extends Component {
 

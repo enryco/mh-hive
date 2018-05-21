@@ -16,7 +16,7 @@ class PolicyList extends Component {
     const { items } = this.props
 
     return (
-      <div >
+      <div style={{ paddingTop: 20 }}>
         <Route exact path='/policy' render={() => _.map(items, (e, i) => <Item key={i} item={e} />)} />
         <Route path={`/policy/:id`} render={({ match }) => <SingleView item={_.get(items, `${match.params.id}.fields`)} />} />
       </div>
