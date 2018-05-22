@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Input from './Input'
-import Label from './Label'
+import Input from './general/Input'
+import Label from './general/Label'
 
 const PrimarySearchBar = props => {
   const { onChange, placeholder } = props

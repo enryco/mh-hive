@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Label from './Label'
+import Label from './general/Label'
 import slugify from 'slugify'
 import { Collapse } from 'react-collapse'
 import { presets } from 'react-motion'
