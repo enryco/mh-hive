@@ -26,6 +26,25 @@ class CategoryList extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log(this.props.items)
+
+    this.handleCategories(this.props.items)
+
+    // preselect all
+    if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.handleCategories(nextProps.items)
+  }
+
+  getSelected = () => {
+    const slug = this.props.history.location.pathname.split('/')[2]
+    return slug ? this.state.categories[slug] : 'Select category'
+  }
+
   navigate = (slug) => {
 
     const { history, match } = this.props
@@ -57,25 +76,6 @@ class CategoryList extends Component {
     })
 
     this.setState({ categories })
-  }
-
-  componentDidMount() {
-    console.log(this.props.items)
-
-    this.handleCategories(this.props.items)
-
-    // preselect all
-    if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.handleCategories(nextProps.items)
-  }
-
-  getSelected = () => {
-    const slug = this.props.history.location.pathname.split('/')[2]
-    return slug ? this.state.categories[slug] : 'Select category'
   }
 
   render() {
