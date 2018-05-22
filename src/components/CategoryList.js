@@ -94,7 +94,7 @@ class CategoryList extends Component {
           <Selector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</Selector>
         </div>
 
-        <Collapse isOpened={this.state.isOpened} springConfig={presets.noWobble}  >
+        <Collapse isOpened={this.state.isOpened} springConfig={presets.stiff}  >
 
           <div style={styles.list}>
 
@@ -165,8 +165,9 @@ const Item = props => {
       borderBottomRightRadius: props.lastItem ? 6 : 0,
       borderTopLeftRadius: props.index === 0 ? 6 : 0,
       borderTopRightRadius: props.index === 0 ? 6 : 0,
-      backgroundColor: props.selected ? '#7bd7e5' : '#ffffff',
-      cursor: 'pointer'
+      backgroundColor: props.selected ? 'lightgrey' : '#ffffff',
+      cursor: 'pointer',
+      borderBottom: props.lastItem ? '' : '1px solid lightgrey'
     }}
     onClick={props.onClick} >
     {props.children}
