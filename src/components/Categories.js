@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import Label from './Label'
 import slugify from 'slugify'
 import BackButton from './BackButton'
-import { Collapse } from 'react-collapse';
-import { presets } from 'react-motion';
+import { Collapse } from 'react-collapse'
+import { presets } from 'react-motion'
 import { Route } from 'react-router-dom'
 
 import _ from 'lodash'
-import { CaretDown } from './general/fontawesomes';
+import { CaretDown } from './general/fontawesomes'
 
 class CategoryList extends Component {
 

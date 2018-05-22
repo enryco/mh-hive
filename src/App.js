@@ -5,15 +5,9 @@ import firebase from './firebase'
 
 import _ from 'lodash'
 
-import BackButton from './components/BackButton'
 import Categories from './components/Categories'
 import ListWithCategory from './components/ListWithCategory'
 import Header from './components/Header'
-import InnovationList from './components/InnovationList'
-import PillarButton from './components/PillarButton'
-import SingleView from './components/SingleView'
-import PrimarySearchBar from './components/PrimarySearchBar'
-import SecondarySearchBar from './components/SecondarySearchBar'
 
 
 import { datadump } from './datadump'

@@ -6,6 +6,8 @@ import slugify from 'slugify'
 import SecondarySearchBar from './SecondarySearchBar'
 import PolicyListItem from './PolicyListItem'
 import SingleView from './SingleView'
+import ListItem from './ListItem'
+
 
 class ListWithCategory extends Component {
 
@@ -32,8 +34,7 @@ class ListWithCategory extends Component {
 
     switch (match.params.pillar) {
       case 'policy': return <PolicyListItem {...props} />
-
-      default: return null
+      default: return <ListItem {...props} />
     }
   }
 
