@@ -5,9 +5,9 @@ import BackButton from './BackButton'
 import { Collapse } from 'react-collapse';
 import { presets } from 'react-motion';
 import { Route } from 'react-router-dom'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faCaretDown from '@fortawesome/fontawesome-free-solid/faCaretDown'
+
 import _ from 'lodash'
+import { CaretDown } from './general/fontawesomes';
 
 class CategoryList extends Component {
 
@@ -140,7 +140,7 @@ const Selector = props => {
       cursor: 'pointer'
     }}
     onClick={props.onClick} >
-    {props.children}<FontAwesomeIcon icon={faCaretDown} style={{ marginLeft: 5 }} />
+    {props.children}<CaretDown style={{ marginLeft: 5 }} />
   </div>
 }
 

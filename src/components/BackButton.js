@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import faChevronLeft from '@fortawesome/fontawesome-free-solid/faChevronLeft'
+import { ChevronLeft } from './general/fontawesomes';
 
 const Button = props => {
 
@@ -10,7 +9,7 @@ const Button = props => {
 
   const { match, history } = props
 
-  return <button style={styles.button} onClick={goBack} ><FontAwesomeIcon icon={faChevronLeft} style={{ marginRight: 5 }} />{'Back'}</button>
+  return <button style={styles.button} onClick={goBack} ><ChevronLeft style={{ marginRight: 5 }} />{'Back'}</button>
 
 }
 

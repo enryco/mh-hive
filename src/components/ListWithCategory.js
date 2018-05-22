@@ -17,8 +17,9 @@ class ListWithCategory extends Component {
     if  (category==='all') return items
 
     return _.filter(items, item => {
-      const itemCategory = slugify(item.fields.Category, {lower: true})
-      return itemCategory === category
+      const itemCategory = _.get(item, 'fields.Category')
+      if (itemCategory) return slugify(itemCategory, { lower: true }) === category
+      return false
     })
   }
 

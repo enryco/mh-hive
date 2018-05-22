@@ -56,8 +56,9 @@ class App extends Component {
           isLoading ?
             'loading...' :
             <div>
-              {/* <Route path='/policy/:category' render={() => <PolicyList items={_.get(data, 'Policy')} />} /> */}
               <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
+              <Route path='/education' render={() => <ListWithCategory items={_.get(data, 'Education')} />} />
+              <Route path='/innovation' render={() => <ListWithCategory items={_.get(data, 'Innovation')} />} />
 
             </div>
         }
@@ -75,7 +76,7 @@ const getCategories = table => {
 
   _.map(table, row => {
     const category = _.get(row, 'fields.Category')
-    categories[category] = true
+    if (category) categories[category] = true
   })
   return _.map(categories, (cat, key) => key)
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactCountryFlag from 'react-country-flag'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
+import { ChevronRight } from './general/fontawesomes';
 
 
 const Item = props => {
@@ -42,7 +43,7 @@ const Item = props => {
           maxHeight: '3.6em',
           marginRight: 10,
         }}>{Title}</div>
-      <div style={{ marginRight: 10 }}>▶️</div>
+      <div style={{ marginRight: 10 }}> <ChevronRight /> </div>
     </div>
   </Link>
 
