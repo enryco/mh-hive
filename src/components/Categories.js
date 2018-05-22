@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Label from './Label'
 import slugify from 'slugify'
-import BackButton from './BackButton'
 import { Collapse } from 'react-collapse'
 import { presets } from 'react-motion'
 import { Route } from 'react-router-dom'

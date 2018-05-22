@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { ChevronLeft } from './general/fontawesomes';
+import { ChevronLeft } from './fontawesomes';
 
 const Button = props => {
 
@@ -30,7 +30,7 @@ const styles = {
     background: '#FFF',
     borderRadius: 6,
     fontFamily: "OpenSans-Bold",
-    fontSize: 24,
+    fontSize: 17,
     color: '#db5644',
     textAlign: "center",
     border: 'none',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from '../assets/logo.png'
 import { withRouter } from 'react-router-dom'
-import BackButton from './BackButton'
+import BackButton from './general/BackButton'
 
 class Header extends Component {
 
