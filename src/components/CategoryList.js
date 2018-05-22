@@ -5,54 +5,83 @@ import BackButton from './BackButton'
 import { Collapse } from 'react-collapse';
 import { presets } from 'react-motion';
 import { Route } from 'react-router-dom'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faCaretDown from '@fortawesome/fontawesome-free-solid/faCaretDown'
+import _ from 'lodash'
 
 class CategoryList extends Component {
 
   state = {
-    selected: 'Select category...',
-    isOpened: true,
+    categories: {
+      all: 'All'
+    },
+    isOpened: false,
   }
 
   styles = {
     list: {
-      borderRadius: 6,
       backgroundColor: '#ffffff',
       border: 'solid 1px #43c6db',
-      minHeight: 44
+      borderRadius: 6,
     }
   }
 
-  navigate = (element) => {
+  navigate = (slug) => {
 
     const { history, match } = this.props
 
-    history.push(`${match.path}/${slugify(element, { lower: true })}`)
-    this.handleCollapse(element)
+    history.push(`${match.path}/${slug}`)
+    this.handleCollapse()
   }
 
-  handleCollapse = (element) => {
-    const { isOpened, selected } = this.state
-    if (!element) element = selected
+  handleCollapse = () => {
+    const { isOpened } = this.state
 
     this.setState({
-      selected: element,
       isOpened: !isOpened
     })
   }
 
+  handleCategories = items => {
+
+    const categories = { ...this.state.categories }
+
+    _.forEach(items, item => {
+
+
+      const slug = slugify(item, { lower: true })
+
+      if (!categories[slug]) {
+        categories[slug] = item
+      }
+    })
+
+    this.setState({ categories })
+  }
+
   componentDidMount() {
-    if (this.props.history.location.pathname.split('/').length >2) this.setState({ isOpened: false })
+    console.log(this.props.items)
+
+    this.handleCategories(this.props.items)
+
+    // preselect all
+    if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
 
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.history.location.pathname.split('/').length < 3) this.setState({ isOpened: true })
+    this.handleCategories(nextProps.items)
+  }
+
+  getSelected = () => {
+    const slug = this.props.history.location.pathname.split('/')[2]
+    return slug ? this.state.categories[slug] : 'Select category'
   }
 
   render() {
 
     const { items, history, match } = this.props
-    const { isOpened, selected } = this.state
+    const { isOpened } = this.state
     const styles = this.styles
 
     return (
@@ -61,29 +90,59 @@ class CategoryList extends Component {
           <div style={{ marginRight: 10 }}>⚗️</div>
           <div>Select a Category</div>
         </Label>
-        <Collapse isOpened={this.state.isOpened} springConfig={presets.noWobble} style={styles.list} >
-          {
-            isOpened ? null : <Item index={-2} onClick={() => this.handleCollapse()} >{selected}</Item>
-          }
-          <div >
-            <Item index={0} onClick={() => this.navigate('All')} >All</Item>
+        <div style={styles.list} >
+          <Selector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</Selector>
+        </div>
+
+        <Collapse isOpened={this.state.isOpened} springConfig={presets.noWobble}  >
+
+          <div style={styles.list}>
+
+            <Item
+              index={0}
+              selected={'All' === this.getSelected()}
+              onClick={() => this.navigate('all')} >All</Item>
             {
-              items.map((e, i) => <Item
+              _.map(items, (element, i) => < Item
                 key={i}
                 index={i + 1}
                 lastItem={i + 1 === items.length}
-                onClick={() => this.navigate(e)}
-              >{e}</Item>)
-            }
+                selected={element === this.getSelected()}
+                onClick={() => this.navigate(slugify(element, { lower: true }))}
+              >{element}</Item>
+              )}
           </div>
         </Collapse>
-      </div>
+      </div >
     )
   }
 }
 
 
 export default CategoryList
+
+const Selector = props => {
+  return <div
+    style={{
+      display: 'flex',
+      flexFlow: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingLeft: 10,
+      paddingRight: 10,
+      fontFamily: 'OpenSans',
+      fontSize: 17,
+      fontWeight: 'bold',
+      color: '#333333',
+      height: 44,
+      borderRadius: 6,
+      backgroundColor: '#7bd7e5',
+      cursor: 'pointer'
+    }}
+    onClick={props.onClick} >
+    {props.children}<FontAwesomeIcon icon={faCaretDown} style={{ marginLeft: 5 }} />
+  </div>
+}
 
 const Item = props => {
   return <div
@@ -104,9 +163,9 @@ const Item = props => {
       height: 44,
       borderBottomLeftRadius: props.lastItem ? 6 : 0,
       borderBottomRightRadius: props.lastItem ? 6 : 0,
-      borderTopLeftRadius: props.index === 1 ? 6 : 0,
-      borderTopRightRadius: props.index === 1 ? 6 : 0,
-      backgroundColor: props.index % 2 ? '#ffffff' : '#7bd7e5',
+      borderTopLeftRadius: props.index === 0 ? 6 : 0,
+      borderTopRightRadius: props.index === 0 ? 6 : 0,
+      backgroundColor: props.selected ? '#7bd7e5' : '#ffffff',
       cursor: 'pointer'
     }}
     onClick={props.onClick} >

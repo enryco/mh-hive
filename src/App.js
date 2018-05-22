@@ -45,7 +45,7 @@ class App extends Component {
         }}>
           <Header onClick={() => null} />
           <div style={{ margin: 10,}}>
-            <Route  path='/policy' render={({ match, history }) => <CategoryList match={match} history={history} items={getCategories(_.get(data, 'Policy'))} />} />
+            <Route path='/policy' render={({ match, history }) => <CategoryList match={match} history={history} items={getCategories(_.get(data, 'Policy'))} />} />
           </div>
 
         </div>
