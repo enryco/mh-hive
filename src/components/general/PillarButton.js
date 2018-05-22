@@ -24,7 +24,7 @@ const style = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 167,
+    minWidth: 130,
     height: 80,
     background: '#43C6DB',
     borderRadius: 6,

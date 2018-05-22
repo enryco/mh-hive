@@ -9,6 +9,7 @@ import Categories from './components/Categories'
 import ListWithCategory from './components/ListWithCategory'
 import List from './components/List'
 import Header from './components/Header'
+import Pillars from './components/Pillars'
 
 
 import { datadump } from './datadump'
@@ -51,6 +52,7 @@ class App extends Component {
           isLoading ?
             'loading...' :
             <div>
+              <Route path='/' render={() => <Pillars items={_.keys(data)} />} />
               <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
               <Route path='/education' render={() => <ListWithCategory items={_.get(data, 'Education')} />} />
               <Route path='/innovation' render={() => <ListWithCategory items={_.get(data, 'Innovation')} />} />
