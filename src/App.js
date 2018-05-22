@@ -6,8 +6,8 @@ import firebase from './firebase'
 import _ from 'lodash'
 
 import BackButton from './components/BackButton'
-import CategoryList from './components/CategoryList'
-import PolicyList from './components/PolicyList'
+import Categories from './components/Categories'
+import ListWithCategory from './components/ListWithCategory'
 import Header from './components/Header'
 import InnovationList from './components/InnovationList'
 import PillarButton from './components/PillarButton'
@@ -45,9 +45,9 @@ class App extends Component {
         }}>
           <Header onClick={() => null} />
           <div style={{ margin: 10,}}>
-            <Route path='/policy' render={({ match, history }) => <CategoryList match={match} history={history} items={getCategories(_.get(data, 'Policy'))} />} />
-            <Route path='/education' render={({ match, history }) => <CategoryList match={match} history={history} items={getCategories(_.get(data, 'Education'))} />} />
-            <Route path='/innovation' render={({ match, history }) => <CategoryList match={match} history={history} items={getCategories(_.get(data, 'Innovation'))} />} />
+            <Route path='/policy' render={({ match, history }) => <Categories match={match} history={history} items={getCategories(_.get(data, 'Policy'))} />} />
+            <Route path='/education' render={({ match, history }) => <Categories match={match} history={history} items={getCategories(_.get(data, 'Education'))} />} />
+            <Route path='/innovation' render={({ match, history }) => <Categories match={match} history={history} items={getCategories(_.get(data, 'Innovation'))} />} />
           </div>
 
         </div>
@@ -57,7 +57,7 @@ class App extends Component {
             'loading...' :
             <div>
               {/* <Route path='/policy/:category' render={() => <PolicyList items={_.get(data, 'Policy')} />} /> */}
-              <Route path='/policy' render={() => <PolicyList items={_.get(data, 'Policy')} />} />
+              <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
 
             </div>
         }
