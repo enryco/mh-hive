@@ -12,8 +12,10 @@ class SingleView extends Component {
 
     let content = item[header]
     if (!content) return null
-    if (_.isPlainObject(content)) return null
-    if (_.isArray(content)) content = _.reduce(content, (item, acc) => acc += ', ' + item )
+    console.log(content)
+
+    if (_.isObject(content) && _.isObject(content[0])) return null
+    if (_.isArray(content) && !_.isObject(content[0])) content = _.reduce(content, (item, acc) => acc += ', ' + item )
 
     // format or exclude some fields
     switch (header) {
