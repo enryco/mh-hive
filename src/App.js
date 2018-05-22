@@ -7,6 +7,7 @@ import _ from 'lodash'
 
 import Categories from './components/Categories'
 import ListWithCategory from './components/ListWithCategory'
+import List from './components/List'
 import Header from './components/Header'
 
 
@@ -53,6 +54,7 @@ class App extends Component {
               <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
               <Route path='/education' render={() => <ListWithCategory items={_.get(data, 'Education')} />} />
               <Route path='/innovation' render={() => <ListWithCategory items={_.get(data, 'Innovation')} />} />
+              <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} />
 
             </div>
         }
