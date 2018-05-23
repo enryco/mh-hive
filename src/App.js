@@ -80,7 +80,6 @@ class App extends Component {
               'loading...' :
               <div>
                 <Route exact path='/' render={() => <Pillars items={_.keys(data)} />} />
-                <Route exact path='/' component={PrimarySearchBar} />
 
                 <div className="mh-app-select-and-search" style={{ margin: 5, }}>
                   <div className="mh-app-select-area" style={{ flex: "auto", }}>

@@ -10,6 +10,8 @@ import pillarEducation from "../assets/pillar-mission.png"
 import pillarPolicy from "../assets/pillar-policy.png"
 import pillarResearch from "../assets/pillar-research.png"
 
+import PrimarySearchBar from './PrimarySearchBar'
+
 
 const Pillars = props => {
 
@@ -22,11 +24,12 @@ const Pillars = props => {
 
   const styles = {
     container: {
-      marginTop: '3em',
+      paddingTop: '50px',
       display: 'grid',
       gridTemplateAreas: `
       ". Education Policy ."
       ". Innovation Research ."
+      ". sb sb ."
       `,
       gridGap: '1em',
     },
@@ -50,6 +53,10 @@ const Pillars = props => {
           </div>)
         )
       }
+
+      <div style={{ gridArea: 'sb', display: 'none' }} >
+        <PrimarySearchBar />
+      </div>
     </div>
   )
 }

@@ -68,7 +68,9 @@ class SingleView extends Component {
 
   }
 
+
   render() {
+    window.scrollTo(0,0)
 
     const { item, match } = this.props
     const pillar = match.params.pillar
