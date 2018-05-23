@@ -14,13 +14,13 @@ import Pillars from './components/Pillars'
 import PrimarySearchBar from './components/PrimarySearchBar'
 
 
-import { datadump } from './datadump'
+// import { datadump } from './datadump'
 
 class App extends Component {
 
   state = {
-    data: datadump,
-    isLoading: false,
+    data: {},
+    isLoading: true,
     headerHeight: 0,
   }
 
@@ -28,9 +28,9 @@ class App extends Component {
   contentRef = null
 
   componentDidMount() {
-    // firebase.database().ref().once('value').then(snap => {
-    //   this.setState({ data: snap.val(), isLoading: false })
-    // })
+    firebase.database().ref().once('value').then(snap => {
+      this.setState({ data: snap.val(), isLoading: false })
+    })
     this.setHeaderHeight()
 
   }
@@ -77,7 +77,7 @@ class App extends Component {
         >
           {
             isLoading ?
-              'loading...' :
+              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }}>💃</span><br />Fetching data.. </div> :
               <div>
                 <Route exact path='/' render={() => <Pillars items={_.keys(data)} />} />
 
@@ -88,7 +88,7 @@ class App extends Component {
                     <Route path='/education' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Education'))} />} />
                     <Route path='/innovation' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Innovation'))} />} />
                   </div>
-                  <Route path='/:pillar' component={PrimarySearchBar} />
+                  {/* <Route path='/:pillar' component={PrimarySearchBar} /> */}
                 </div>
 
                 <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
