@@ -1,26 +1,13 @@
-.mh-pillar-button {
-    flex-flow: column;
-}
-
-.mh-single-view {
-    &__item {}
-
-    &__header {}
-
-    &__content {
-        padding-top: 5px;
-        border-top: 1px solid #db5644;
-    }
-}
-
 @media all and (min-width: 426px) {
     .mh-pillar-button {
-        flex-flow: row;
+        flex-flow: row !important;
     }
 
     .mh-single-view {
         &__item {
             flex-flow: row !important;
+            padding-left: 0 !important;
+            border-left: none !important;
         }
 
         &__header {
@@ -30,10 +17,19 @@
         &__content {
             padding-top: 0;
             border-top: none;
-
             margin-left: 10px;
             padding-left: 10px;
             border-left: 2px solid #db5644;
         }
+    }
+
+    .mh-app-select-area {
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .mh-app-select-and-search {
+        display: flex;
+        flex-flow: wrap;
     }
 }

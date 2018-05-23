@@ -3,13 +3,13 @@ import Input from './general/Input'
 import Label from './general/Label'
 
 const PrimarySearchBar = props => {
-  const { onChange, placeholder } = props
+  const { onChange, placeholder, label } = props
 
   return (
-    <div>
+    <div style={{ margin: 5, flex: "auto" }}>
       <Label>
-        <div style={{ marginRight: 10 }}>🔍</div>
-        <div>Need something specific?</div>
+        <div style={{ marginRight: 5 }}>🔍</div>
+        <div>{label ? label : 'Search'}</div>
       </Label>
       <div style={{
         display: 'flex',
@@ -24,7 +24,7 @@ const PrimarySearchBar = props => {
         paddingRight: 10,
       }} >
         <Input
-          placeholder={placeholder}
+          placeholder={placeholder ? placeholder : '...'}
           onChange={onChange}
         />
       </div>

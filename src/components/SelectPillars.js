@@ -39,7 +39,7 @@ class CategoryList extends Component {
   }
 
   getSelected = () => {
-    const slug = this.props.history.location.pathname.split('/')[2]
+    const slug = this.props.history.location.pathname.split('/')[1]
     return slug ? this.state.categories[slug] : 'Select category'
   }
 
@@ -47,7 +47,7 @@ class CategoryList extends Component {
 
     const { history, match } = this.props
 
-    history.push(`${match.path}/${slug}`)
+    history.push(`/${slug}`)
     this.handleCollapse()
   }
 
@@ -83,10 +83,10 @@ class CategoryList extends Component {
     const styles = this.styles
 
     return (
-      <div>
+      <div style={{ margin: 5,  flex: '1' }}>
         <Label>
-          <div style={{ marginRight: 10 }}>⚗️</div>
-          <div>Select a Category</div>
+          <div style={{ marginRight: 5 }}>🎯</div>
+          <div>Pillar</div>
         </Label>
         <div style={styles.list} >
           <Selector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</Selector>
@@ -95,11 +95,6 @@ class CategoryList extends Component {
         <Collapse isOpened={this.state.isOpened} springConfig={presets.stiff}  >
 
           <div style={styles.list}>
-
-            <Item
-              index={0}
-              selected={'All' === this.getSelected()}
-              onClick={() => this.navigate('all')} >All</Item>
             {
               _.map(items, (element, i) => < Item
                 key={i}

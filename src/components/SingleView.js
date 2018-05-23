@@ -12,7 +12,6 @@ class SingleView extends Component {
 
     let content = item[header]
     if (!content) return null
-    console.log(content)
 
     if (_.isObject(content) && _.isObject(content[0])) return null
     if (_.isArray(content) && !_.isObject(content[0])) content = _.reduce(content, (item, acc) => acc += ', ' + item)
@@ -39,6 +38,8 @@ class SingleView extends Component {
         alignItems: 'flex-start',
         marginBottom: 20,
         width: '100%',
+        paddingLeft: 5,
+        borderLeft: "2px solid #db5644"
       }}>
       <div
         className="mh-single-view__header"
@@ -60,6 +61,7 @@ class SingleView extends Component {
           whiteSpace: 'wrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+
         }}
       >{content}</div>
     </div>)
@@ -74,7 +76,7 @@ class SingleView extends Component {
     if (!item) return null
 
     return (
-      <div style={{ margin: 10, width: "100vw" }} >
+      <div style={{ margin: 10, marginTop: 20, width: "calc(100vw - 20px)" }} >
         <Linkify>
           {
             _.map(headers[pillar], this.renderItem)

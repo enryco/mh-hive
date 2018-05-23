@@ -22,6 +22,7 @@ export default PillarButton
 const style = {
   main: {
     display: 'flex',
+    flexFlow: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     background: '#43C6DB',

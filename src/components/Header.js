@@ -17,10 +17,7 @@ class Header extends Component {
 
     return (
       <div style={styles.main}>
-        {
-          pillar && <BackButton />
-        }
-        <img src={logo} alt="" style={styles.img} onClick={onClick} />
+        <img src={logo} alt="" style={styles.img} onClick={() => this.props.history.push('/')} />
         <div style={styles.title}>
           <div>hive</div>
           {
