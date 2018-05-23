@@ -52,7 +52,6 @@ const styles = {
     flexFlow: 'column',
     justifyContent: 'center',
     padding: 9,
-    fontFamily: 'OpenSans',
     fontSize: '24px',
     fontWeight: 'bold',
     fontStyle: 'normal',

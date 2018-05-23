@@ -12,7 +12,6 @@ const Label = props => {
             paddingRight: 10,
             paddingTop: 10,
             paddingBottom: 4,
-            fontFamily: 'OpenSans',
             fontSize: 14,
             fontWeight: 'bold',
             fontStyle: 'normal',
@@ -26,4 +25,4 @@ const Label = props => {
     )
 }
 
-export default Label    
+export default Label

@@ -26,12 +26,11 @@ class CategoryList extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.items)
 
     this.handleCategories(this.props.items)
 
     // preselect all
-    if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
+    // if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
 
   }
 
@@ -129,7 +128,6 @@ const Selector = props => {
       alignItems: 'center',
       paddingLeft: 10,
       paddingRight: 10,
-      fontFamily: 'OpenSans',
       fontSize: 17,
       fontWeight: 'bold',
       color: '#333333',
@@ -151,7 +149,6 @@ const Item = props => {
       justifyContent: 'flex-start',
       alignItems: 'center',
       paddingLeft: 10,
-      fontFamily: 'OpenSans',
       fontSize: 17,
       fontWeight: 'bold',
       fontStyle: 'normal',

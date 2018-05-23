@@ -32,7 +32,6 @@ class Input extends Component {
                     style={{
                         width: "100%",
                         border: "0",
-                        fontFamily: 'OpenSans',
                         fontSize: 17,
                         fontWeight: 'normal',
                         fontStyle: 'normal',

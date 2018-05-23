@@ -1,0 +1,39 @@
+.mh-pillar-button {
+    flex-flow: column;
+}
+
+.mh-single-view {
+    &__item {}
+
+    &__header {}
+
+    &__content {
+        padding-top: 5px;
+        border-top: 1px solid #db5644;
+    }
+}
+
+@media all and (min-width: 426px) {
+    .mh-pillar-button {
+        flex-flow: row;
+    }
+
+    .mh-single-view {
+        &__item {
+            flex-flow: row !important;
+        }
+
+        &__header {
+            text-align: right !important;
+        }
+
+        &__content {
+            padding-top: 0;
+            border-top: none;
+
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #db5644;
+        }
+    }
+}

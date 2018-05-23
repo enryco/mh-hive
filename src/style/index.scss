@@ -1,16 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
 // Variables
 @import "vars";
 
 // Modules
 @import "body";
-
-
-@import "Header";
-@import "PillarButton";
-@import "BackButton";
-@import "SubSearchBar";
-@import "MainSearchBar";
-@import "EducationList";
-@import "InnovationList";
-@import "CategoryList";
-@import "SingleView";
+@import "Components";

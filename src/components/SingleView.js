@@ -15,7 +15,7 @@ class SingleView extends Component {
     console.log(content)
 
     if (_.isObject(content) && _.isObject(content[0])) return null
-    if (_.isArray(content) && !_.isObject(content[0])) content = _.reduce(content, (item, acc) => acc += ', ' + item )
+    if (_.isArray(content) && !_.isObject(content[0])) content = _.reduce(content, (item, acc) => acc += ', ' + item)
 
     // format or exclude some fields
     switch (header) {
@@ -30,21 +30,36 @@ class SingleView extends Component {
     }
 
     return (<div
+      className="mh-single-view__item"
       key={index}
       style={{
-        marginBottom: 10
+        display: 'flex',
+        flexFlow: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        marginBottom: 20,
+        width: '100%',
       }}>
-      <div style={{
-        fontFamily: 'OpenSans',
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: '#db5644',
-      }}>{header}</div>
       <div
+        className="mh-single-view__header"
         style={{
-          fontFamily: 'OpenSans',
-          fontSize: 15,
+          fontSize: 17,
+          fontWeight: 'bold',
+          lineHeight: 1.5,
+          color: '#db5644',
+          flex: 1,
+        }}>{header}</div>
+      <div
+        className="mh-single-view__content"
+        style={{
+          flex: 2,
+          width: "calc(100vw - 20px)",
+          fontSize: header === 'Title' ? 17 : 15,
+          fontWeight: header === 'Title' ? 'bold' : '',
           color: '#666666',
+          whiteSpace: 'wrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}
       >{content}</div>
     </div>)
@@ -59,7 +74,7 @@ class SingleView extends Component {
     if (!item) return null
 
     return (
-      <div style={{ margin: 10 }} >
+      <div style={{ margin: 10, width: "100vw" }} >
         <Linkify>
           {
             _.map(headers[pillar], this.renderItem)

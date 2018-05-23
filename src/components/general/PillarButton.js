@@ -9,7 +9,7 @@ class PillarButton extends Component {
   render() {
 
     return (
-      <div style={style.main} onClick={this.props.onClick} >
+      <div style={style.main} className="mh-pillar-button" onClick={this.props.onClick} >
         {this.props.children}
       </div>
     )
@@ -22,13 +22,11 @@ export default PillarButton
 const style = {
   main: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    minWidth: 130,
-    height: 80,
     background: '#43C6DB',
     borderRadius: 6,
-    fontFamily: "OpenSans-Bold",
+    fontWeight: 'bold',
     fontSize: 17,
     color: "#FFFFFF",
     textAlign: "center",

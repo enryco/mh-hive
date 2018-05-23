@@ -29,7 +29,7 @@ const styles = {
     paddingRight: 14,
     background: '#FFF',
     borderRadius: 6,
-    fontFamily: "OpenSans-Bold",
+    fontWeight: 'bold',
     fontSize: 17,
     color: '#db5644',
     textAlign: "center",

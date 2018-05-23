@@ -17,7 +17,6 @@ const Item = props => {
       flexFlow: 'row',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      fontFamily: 'OpenSans',
       fontSize: 15,
       fontWeight: 'bold',
       fontStyle: 'normal',
