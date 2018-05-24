@@ -13,6 +13,8 @@ class SingleView extends Component {
     let content = item[header]
     if (!content) return null
 
+
+    if (_.isArray(content) && _.isObject(content[0])) content = <Visual file={content[0]} />
     if (_.isObject(content) && _.isObject(content[0])) return null
     if (_.isArray(content) && !_.isObject(content[0])) content = _.reduce(content, (item, acc) => acc += ', ' + item)
 
@@ -26,6 +28,15 @@ class SingleView extends Component {
     switch (content) {
       case true: content = '✅ Yes'; break
       case false: content = 'No'; break
+    }
+
+    switch (header) {
+      case 'Visual': header = ''
+      case 'Logo': header = ''
+        break
+
+      default:
+        break
     }
 
     return (<div
@@ -70,7 +81,7 @@ class SingleView extends Component {
 
 
   render() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
 
     const { item, match } = this.props
     const pillar = match.params.pillar
@@ -92,6 +103,14 @@ class SingleView extends Component {
 const SingleViewWithRouter = withRouter(SingleView)
 
 export default SingleViewWithRouter
+
+const Visual = props => {
+
+  const file = props.file
+  const mediaLink = file.thumbnails ? file.thumbnails.large.mediaLink : file.mediaLink
+
+  return <img style={{ maxHeight: 250, maxWidth: "100%" }} src={mediaLink} alt="" />
+}
 
 
 
