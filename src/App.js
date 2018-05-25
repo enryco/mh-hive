@@ -79,27 +79,21 @@ class App extends Component {
             isLoading ?
               <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }}>💃</span><br />Fetching data.. </div> :
               <div>
+
                 <Route exact path='/' render={() => <Pillars items={_.keys(data)} />} />
 
-                <div className="mh-app-select-and-search" style={{ margin: 5, }}>
-                    <Route path='/:pillar' render={({ match, history }) => (
-                      <div className="mh-app-select-area" style={{ flex: "auto", }}>
-                        <SelectPillars match={match} history={history} items={_.keys(data)} />
-                        <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
-                      </div>)
-                    } />
-                  {/* <Route path='/:pillar' component={PrimarySearchBar} /> */}
-                </div>
+                <Route path='/:pillar' render={({ match, history }) => (
+                  <div className="mh-app__select" style={{ margin: 5, }}>
+                    <SelectPillars match={match} history={history} items={_.keys(data)} />
+                    <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
+                    <PrimarySearchBar />
+                    <ListWithCategory items={_.get(data, `${tableNames[match.params.pillar]}`)} />
+                  </div>)
+                } />
 
-                <div className="mh-app__list">
-                  <Route path='/:pillar' render={({ match }) => <ListWithCategory items={_.get(data, `${tableNames[match.params.pillar]}`)} />} />
-                  {/* <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} /> */}
-                </div>
-
-                <div className="mh-app__single-view">
-                  <Route path={`/:pillar/:category/:id`} render={({ match }) => <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}.fields`)} />} />
-                </div>
-
+                <Route path={`/:pillar/:category/:id`} render={({ match }) => <div className="mh-app__single-view">
+                  <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}.fields`)} />
+                </div>} />
 
               </div>
           }
