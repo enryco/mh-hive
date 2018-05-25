@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import logo from '../assets/logo.png'
 import { withRouter } from 'react-router-dom'
 import BackButton from './general/BackButton'
+import slugify from 'slugify';
 
 class Header extends Component {
 
@@ -14,6 +15,7 @@ class Header extends Component {
     const { onClick, location } = this.props
 
     const pillar = location.pathname.split('/')[1]
+
 
     return (
       <div style={styles.main}>
