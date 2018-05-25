@@ -15,13 +15,13 @@ import PrimarySearchBar from './components/PrimarySearchBar'
 import slugify from 'slugify';
 import SingleView from './components/SingleView'
 
-import { datadump } from './datadump'
+// import { datadump } from './datadump'
 
 class App extends Component {
 
   state = {
-    data: datadump,
-    isLoading: false,
+    data: {},
+    isLoading: true,
     headerHeight: 0,
     search: '',
   }
@@ -30,20 +30,19 @@ class App extends Component {
   contentRef = null
 
   componentDidMount() {
-    // firebase.database().ref().once('value').then(snap => {
-    //   this.setState({ data: snap.val(), isLoading: false })
-    // })
+    firebase.database().ref().once('value').then(snap => {
+      const data = snap.val()
+      const clone = _.cloneDeep(data)
+      _.forEach(data, (table, tableName) => {
+        _.forEach(table, (record, recordId) => {
 
-    const data = this.state.data
-    const clone = _.cloneDeep(data)
-    _.forEach(data, (table, tableName) => {
-      _.forEach(table, (record, recordId) => {
-
-        _.set(clone, [tableName, recordId], { ...record, tableName })
+          _.set(clone, [tableName, recordId], { ...record, tableName })
+        })
       })
+
+      this.setState({ data, clone, isLoading: false })
     })
 
-    this.setState({ clone })
     this.setHeaderHeight()
 
   }
@@ -125,13 +124,13 @@ class App extends Component {
 
                 <Route exact path='/' render={() => <div>
                   <Pillars
-                   items={_.keys(data)}
-                   defaultValue={this.state.search}
-                   onChange={value => {
-                    if (!value) return
-                    this.setState({ search: value })
-                    this.props.history.push('/all/all')
-                  }} />
+                    items={_.keys(data)}
+                    defaultValue={this.state.search}
+                    onChange={value => {
+                      if (!value) return
+                      this.setState({ search: value })
+                      this.props.history.push('/all/all')
+                    }} />
                 </div>} />
 
 
@@ -158,9 +157,6 @@ class App extends Component {
 
                 <Switch>
                   <Route exact path={`/all/all/:id`} render={({ match }) => <div className="mh-app__single-view">
-                    {
-                      console.log(_.find(this.getAllItems(clone), record => record.id === match.params.id))
-                    }
                     <SingleView item={_.find(this.getAllItems(clone), record => record.id === match.params.id)} />
                   </div>} />
 

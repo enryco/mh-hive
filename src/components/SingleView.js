@@ -90,8 +90,6 @@ class SingleView extends Component {
     const tableNameSlug = item && item.tableName && slugify(item.tableName, { lower: true })
     const pillar = match.params.pillar || tableNameSlug
 
-    console.log(tableNameSlug)
-
     if (!item) return null
 
 
