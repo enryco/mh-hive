@@ -16,7 +16,7 @@ class ListWithCategory extends Component {
   }
 
   filterByCategory = (items, category) => {
-    if  (category==='all') return items
+    if (category === 'all') return items
 
     return _.filter(items, item => {
       const itemCategory = _.get(item, 'fields.Category')
@@ -42,14 +42,9 @@ class ListWithCategory extends Component {
 
     const { items } = this.props
 
-    return (
-      <div>
-        <Switch>
-          <Route exact path={`/:pillar/:category`} render={({ match }) => _.map(this.filterByCategory(items, match.params.category), (item, key) => this.renderItem(item, key, match))} />
-          <Route exact path={`/:pillar/:category/:id`} render={({ match }) => <SingleView item={_.get(items, `${match.params.id}.fields`)} />} />
-        </Switch>
-      </div>
-    )
+    return <Route exact path={`/:pillar/:category`} render={({ match }) => _.map(this.filterByCategory(items, match.params.category), (item, key) => this.renderItem(item, key, match))} />
+
+
   }
 }
 

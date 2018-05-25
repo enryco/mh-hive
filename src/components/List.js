@@ -14,7 +14,6 @@ const List = props => {
   return (
     <div>
       <Route exact path={`/:pillar`} render={({ match }) => _.map(props.items, (item, key) => <ListItem item={item} key={key} match={match} />)} />
-      <Route exact path={`/:pillar/:id`} render={({ match }) => <SingleView item={_.get(props.items, `${match.params.id}.fields`)} />} />
     </div>
   )
 }

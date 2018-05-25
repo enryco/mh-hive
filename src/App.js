@@ -12,7 +12,8 @@ import List from './components/List'
 import Header from './components/Header'
 import Pillars from './components/Pillars'
 import PrimarySearchBar from './components/PrimarySearchBar'
-
+import slugify from 'slugify';
+import SingleView from './components/SingleView'
 
 // import { datadump } from './datadump'
 
@@ -49,10 +50,9 @@ class App extends Component {
 
     const { data, isLoading, headerHeight } = this.state
 
-    console.log(headerHeight)
-
-
-
+    const tableNames = {}
+    _.forEach(_.keys(data), key => tableNames[slugify(key, { lower: true })] = key)
+    console.log(tableNames)
 
     return (
       <div className="App">
@@ -64,7 +64,7 @@ class App extends Component {
             left: 0,
             right: 0,
           }}>
-          <Header onClick={() => null} />
+          <Header onClick={() => null} items={_.keys(data)} />
 
 
         </div>
@@ -91,10 +91,15 @@ class App extends Component {
                   {/* <Route path='/:pillar' component={PrimarySearchBar} /> */}
                 </div>
 
-                <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
-                <Route path='/education-and-learning' render={() => <ListWithCategory items={_.get(data, 'Education & Learning')} />} />
-                <Route path='/innovation' render={() => <ListWithCategory items={_.get(data, 'Innovation')} />} />
-                <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} />
+                <div className="mh-app__list">
+                  <Route path='/:pillar' render={({ match }) => <ListWithCategory items={_.get(data, `${tableNames[match.params.pillar]}`)} />} />
+                  <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} />
+                </div>
+
+                <div className="mh-app__single-view">
+                  <Route path={`/:pillar/:category/:id`} render={({ match }) => <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}.fields`)} />} />
+                </div>
+
 
               </div>
           }

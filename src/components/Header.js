@@ -3,6 +3,7 @@ import logo from '../assets/logo.png'
 import { withRouter } from 'react-router-dom'
 import BackButton from './general/BackButton'
 import slugify from 'slugify';
+import _ from 'lodash'
 
 class Header extends Component {
 
@@ -12,9 +13,11 @@ class Header extends Component {
 
   render() {
 
-    const { onClick, location } = this.props
+    const { onClick, location, items } = this.props
 
     const pillar = location.pathname.split('/')[1]
+
+    const pillarName = _.find(items, item => slugify(item, {lower: true}) === pillar)
 
 
     return (
@@ -23,7 +26,7 @@ class Header extends Component {
         <div style={styles.title}>
           <div>hive</div>
           {
-            pillar && <div style={styles.category} >{pillar}</div>
+            pillar && <div style={styles.category} >{pillarName}</div>
           }
         </div>
       </div>
