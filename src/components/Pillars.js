@@ -17,7 +17,7 @@ const Pillars = props => {
 
   const images = {
     Innovation: pillarInnovation,
-    Education: pillarEducation,
+    "Education & Learning": pillarEducation,
     Policy: pillarPolicy,
     Research: pillarResearch,
   }
@@ -29,8 +29,9 @@ const Pillars = props => {
       gridTemplateAreas: `
       ". Education Policy ."
       ". Innovation Research ."
-      ". sb sb ."
-      `,
+      ". sb sb ."`,
+      gridTemplateColumns: 'auto 1fr 1fr auto',
+      gridTemplateRows: '1fr 1fr 1fr',
       gridGap: '1em',
     },
     img: {
@@ -40,21 +41,25 @@ const Pillars = props => {
   }
 
   return (
-    <div style={styles.container}>
+    <div className="mh-pillars" style={styles.container}>
       {
-        _.map(props.items, (item, index) => (
-          <div style={{ gridArea: item }} key={index} >
-            <Link to={'/' + slugify(item, { lower: true })} >
-              <PillarButton>
-                <img src={images[item]} alt="" style={styles.img} />
-                {item}
-              </PillarButton>
-            </Link>
-          </div>)
+        _.map(props.items, (item, index) => {
+
+          const gridArea = item !== 'Education & Learning' ? item : 'Education'
+          return (
+            <div style={{ gridArea }} key={index} >
+              <Link to={'/' + slugify(item, { lower: true })} >
+                <PillarButton>
+                  <img src={images[item]} alt="" style={styles.img} />
+                  {item}
+                </PillarButton>
+              </Link>
+            </div>)
+        }
         )
       }
 
-      <div style={{ gridArea: 'sb', display: 'none' }} >
+      <div style={{ gridArea: 'sb', display: '' }} >
         <PrimarySearchBar />
       </div>
     </div>

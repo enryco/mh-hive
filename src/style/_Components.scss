@@ -1,6 +1,7 @@
 @media all and (min-width: 426px) {
     .mh-pillar-button {
         flex-flow: row !important;
+        text-align: left !important;
     }
 
     .mh-single-view {
@@ -16,21 +17,25 @@
         }
 
         &__content {
-            padding-top: 0;
-            border-top: none;
-            margin-left: 10px;
-            padding-left: 10px;
-            border-left: 2px solid #db5644;
+            padding-top: 0 !important;
+            border-top: none !important;
+            margin-left: 10px !important;
+            padding-left: 10px !important;
+            border-left: 2px solid #db5644 !important;
         }
     }
 
     .mh-app-select-area {
-        display: flex;
-        flex-flow: wrap;
+        display: flex !important;
+        flex-flow: wrap !important;
     }
 
     .mh-app-select-and-search {
-        display: flex;
-        flex-flow: wrap;
+        display: flex !important;
+        flex-flow: wrap !important;
+    }
+
+    .mh-pillars {
+        grid-template-columns: 1fr 1fr 1fr 1fr !important;
     }
 }

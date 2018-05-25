@@ -31,6 +31,8 @@ const style = {
     fontSize: 17,
     color: "#FFFFFF",
     textAlign: "center",
+    height: "100%",
+    paddingRight: 10,
   },
 }
 

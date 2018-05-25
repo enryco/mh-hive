@@ -85,14 +85,14 @@ class App extends Component {
                   <div className="mh-app-select-area" style={{ flex: "auto", }}>
                     <Route path='/:pillar' render={({ match, history }) => <SelectPillars match={match} history={history} items={_.keys(data)} />} />
                     <Route path='/policy' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Policy'))} />} />
-                    <Route path='/education' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Education'))} />} />
+                    <Route path='/education-and-learning' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Education & Learning'))} />} />
                     <Route path='/innovation' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Innovation'))} />} />
                   </div>
                   {/* <Route path='/:pillar' component={PrimarySearchBar} /> */}
                 </div>
 
                 <Route path='/policy' render={() => <ListWithCategory items={_.get(data, 'Policy')} />} />
-                <Route path='/education' render={() => <ListWithCategory items={_.get(data, 'Education')} />} />
+                <Route path='/education-and-learning' render={() => <ListWithCategory items={_.get(data, 'Education & Learning')} />} />
                 <Route path='/innovation' render={() => <ListWithCategory items={_.get(data, 'Innovation')} />} />
                 <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} />
 
