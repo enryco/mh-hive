@@ -60,7 +60,10 @@ const Pillars = props => {
       }
 
       <div style={{ gridArea: 'sb', display: '' }} >
-        {/* <PrimarySearchBar /> */}
+        <PrimarySearchBar
+          defaultValue={props.defaultValue}
+          onChange={props.onChange}
+        />
       </div>
     </div>
   )

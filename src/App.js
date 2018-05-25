@@ -123,7 +123,17 @@ class App extends Component {
               <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }}>💃</span><br />Fetching data.. </div> :
               <div>
 
-                <Route exact path='/' render={() => <Pillars items={_.keys(data)} />} />
+                <Route exact path='/' render={() => <div>
+                  <Pillars
+                   items={_.keys(data)}
+                   defaultValue={this.state.search}
+                   onChange={value => {
+                    if (!value) return
+                    this.setState({ search: value })
+                    this.props.history.push('/all/all')
+                  }} />
+                </div>} />
+
 
                 <Switch>
                   <Redirect exact path='/all' to='/all/all' />

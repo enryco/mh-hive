@@ -10,6 +10,7 @@ class Input extends Component {
   componentDidMount() {
     const defaultValue = this.props.defaultValue
     if (defaultValue) this.setState({ value: defaultValue })
+    this.input.focus()
   }
   handleChange = e => {
     const value = e.target.value
@@ -31,6 +32,7 @@ class Input extends Component {
         }}
       >
         <input
+          ref={e => this.input = e}
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
