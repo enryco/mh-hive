@@ -147,7 +147,7 @@ const headers = {
     "Open acess",
     "Location of study",
     "About",
-    "Digital badges",
+    "Best suited for",
     "Keywords",
     "Type of research",
     "Comments",

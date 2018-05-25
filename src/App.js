@@ -82,18 +82,18 @@ class App extends Component {
                 <Route exact path='/' render={() => <Pillars items={_.keys(data)} />} />
 
                 <div className="mh-app-select-and-search" style={{ margin: 5, }}>
-                  <div className="mh-app-select-area" style={{ flex: "auto", }}>
-                    <Route path='/:pillar' render={({ match, history }) => <SelectPillars match={match} history={history} items={_.keys(data)} />} />
-                    <Route path='/policy' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Policy'))} />} />
-                    <Route path='/education-and-learning' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Education & Learning'))} />} />
-                    <Route path='/innovation' render={({ match, history }) => <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, 'Innovation'))} />} />
-                  </div>
+                    <Route path='/:pillar' render={({ match, history }) => (
+                      <div className="mh-app-select-area" style={{ flex: "auto", }}>
+                        <SelectPillars match={match} history={history} items={_.keys(data)} />
+                        <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
+                      </div>)
+                    } />
                   {/* <Route path='/:pillar' component={PrimarySearchBar} /> */}
                 </div>
 
                 <div className="mh-app__list">
                   <Route path='/:pillar' render={({ match }) => <ListWithCategory items={_.get(data, `${tableNames[match.params.pillar]}`)} />} />
-                  <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} />
+                  {/* <Route path='/research' render={() => <List items={_.get(data, 'Research')} />} /> */}
                 </div>
 
                 <div className="mh-app__single-view">

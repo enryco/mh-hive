@@ -47,7 +47,7 @@ class CategoryList extends Component {
 
     const { history, match } = this.props
 
-    history.push(`${match.path}/${slug}`)
+    history.push(`/${match.params.pillar}/${slug}`)
     this.handleCollapse()
   }
 
