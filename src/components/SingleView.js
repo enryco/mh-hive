@@ -3,12 +3,14 @@ import { withRouter } from 'react-router-dom'
 import _ from 'lodash'
 import ReactCountryFlag from 'react-country-flag'
 import Linkify from './general/Linkify'
+import slugify from 'slugify';
+import BackButton from './general/BackButton'
 
 class SingleView extends Component {
 
   renderItem = (header, index, headersArray) => {
 
-    const item = this.props.item
+    const item = this.props.item.fields
 
     let content = item[header]
     if (!content) return null
@@ -84,9 +86,14 @@ class SingleView extends Component {
     window.scrollTo(0, 0)
 
     const { item, match } = this.props
-    const pillar = match.params.pillar
+
+    const tableNameSlug = item && item.tableName && slugify(item.tableName, { lower: true })
+    const pillar = match.params.pillar || tableNameSlug
+
+    console.log(tableNameSlug)
 
     if (!item) return null
+
 
     return (
       <div style={{ margin: 10, marginTop: 20, width: "calc(100vw - 20px)" }} >
@@ -95,6 +102,7 @@ class SingleView extends Component {
             _.map(headers[pillar], this.renderItem)
           }
         </Linkify>
+        <BackButton />
       </div>
     )
   }

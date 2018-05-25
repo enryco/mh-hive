@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, Switch, withRouter } from 'react-router-dom'
+import { Route, Link, Switch, withRouter, Redirect } from 'react-router-dom'
 
 import firebase from './firebase'
 
@@ -15,13 +15,13 @@ import PrimarySearchBar from './components/PrimarySearchBar'
 import slugify from 'slugify';
 import SingleView from './components/SingleView'
 
-// import { datadump } from './datadump'
+import { datadump } from './datadump'
 
 class App extends Component {
 
   state = {
-    data: {},
-    isLoading: true,
+    data: datadump,
+    isLoading: false,
     headerHeight: 0,
     search: '',
   }
@@ -30,9 +30,20 @@ class App extends Component {
   contentRef = null
 
   componentDidMount() {
-    firebase.database().ref().once('value').then(snap => {
-      this.setState({ data: snap.val(), isLoading: false })
+    // firebase.database().ref().once('value').then(snap => {
+    //   this.setState({ data: snap.val(), isLoading: false })
+    // })
+
+    const data = this.state.data
+    const clone = _.cloneDeep(data)
+    _.forEach(data, (table, tableName) => {
+      _.forEach(table, (record, recordId) => {
+
+        _.set(clone, [tableName, recordId], { ...record, tableName })
+      })
     })
+
+    this.setState({ clone })
     this.setHeaderHeight()
 
   }
@@ -46,6 +57,8 @@ class App extends Component {
       headerHeight: this.headerRef ? this.headerRef.clientHeight : 0
     })
   }
+
+  getAllItems = data => _.flatten(_.map(data, table => _.map(table, rows => rows)))
 
   filterSearch = data => {
     const search = this.state.search.toLocaleLowerCase()
@@ -79,7 +92,7 @@ class App extends Component {
 
   render() {
 
-    const { data, isLoading, headerHeight } = this.state
+    const { data, clone, isLoading, headerHeight } = this.state
 
     const tableNames = {}
     _.forEach(_.keys(data), key => tableNames[slugify(key, { lower: true })] = key)
@@ -112,18 +125,39 @@ class App extends Component {
 
                 <Route exact path='/' render={() => <Pillars items={_.keys(data)} />} />
 
-                <Route path='/:pillar' render={({ match, history }) => (
-                  <div className="mh-app__select" style={{ margin: 5, }}>
-                    <SelectPillars match={match} history={history} items={_.keys(data)} />
-                    <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
-                    <PrimarySearchBar onChange={value => this.setState({ search: value })} />
-                    <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} />
-                  </div>)
-                } />
+                <Switch>
+                  <Redirect exact path='/all' to='/all/all' />
+                  <Route path='/all/all' render={({ match, history }) => (
+                    <div className="mh-app__select" style={{ margin: 5, }}>
+                      <SelectPillars match={match} history={history} items={_.keys(data)} />
+                      <PrimarySearchBar defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
+                      <List items={this.filterSearch(this.getAllItems(data))} />
+                    </div>)
+                  }
+                  />
+                  <Route path='/:pillar' render={({ match, history }) => (
+                    <div className="mh-app__select" style={{ margin: 5, }}>
+                      <SelectPillars match={match} history={history} items={_.keys(data)} />
+                      <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
+                      <PrimarySearchBar defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
+                      <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} />
+                    </div>)
+                  }
+                  />
+                </Switch>
 
-                <Route path={`/:pillar/:category/:id`} render={({ match }) => <div className="mh-app__single-view">
-                  <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}.fields`)} />
-                </div>} />
+                <Switch>
+                  <Route exact path={`/all/all/:id`} render={({ match }) => <div className="mh-app__single-view">
+                    {
+                      console.log(_.find(this.getAllItems(clone), record => record.id === match.params.id))
+                    }
+                    <SingleView item={_.find(this.getAllItems(clone), record => record.id === match.params.id)} />
+                  </div>} />
+
+                  <Route path={`/:pillar/:category/:id`} render={({ match }) => <div className="mh-app__single-view">
+                    <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}`)} />
+                  </div>} />
+                </Switch>
 
               </div>
           }

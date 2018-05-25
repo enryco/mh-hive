@@ -3,7 +3,7 @@ import Input from './general/Input'
 import Label from './general/Label'
 
 const PrimarySearchBar = props => {
-  const { onChange, placeholder, label } = props
+  const { onChange, placeholder, label, defaultValue } = props
 
   return (
     <div style={{ margin: 5, flex: "auto" }}>
@@ -24,6 +24,7 @@ const PrimarySearchBar = props => {
         paddingRight: 10,
       }} >
         <Input
+          defaultValue={defaultValue}
           placeholder={placeholder ? placeholder : '...'}
           onChange={onChange}
         />

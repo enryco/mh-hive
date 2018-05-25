@@ -11,11 +11,9 @@ import ListItem from './ListItem'
 
 const List = props => {
 
-  return (
-    <div>
-      <Route exact path={`/:pillar`} render={({ match }) => _.map(props.items, (item, key) => <ListItem item={item} key={key} match={match} />)} />
-    </div>
-  )
+  return <Route exact path={`/all/all`} render={({ match }) => {
+    return _.map(props.items, (item, key) => <ListItem item={item} key={key} match={{ url: '/all/all' }} />)
+  }} />
 }
 
 export default List

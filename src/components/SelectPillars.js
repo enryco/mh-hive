@@ -83,7 +83,7 @@ class CategoryList extends Component {
     const styles = this.styles
 
     return (
-      <div style={{ margin: 5,  flex: '1' }}>
+      <div style={{ margin: 5, flex: '1' }}>
         <Label>
           <div style={{ marginRight: 5 }}>🎯</div>
           <div>Pillar</div>
@@ -95,6 +95,10 @@ class CategoryList extends Component {
         <Collapse isOpened={this.state.isOpened} springConfig={presets.stiff}  >
 
           <div style={styles.list}>
+            <Item
+              index={0}
+              selected={'All' === this.getSelected()}
+              onClick={() => this.navigate('all')} >All</Item>
             {
               _.map(items, (element, i) => < Item
                 key={i}

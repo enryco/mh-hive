@@ -3,13 +3,19 @@ import React, { Component } from 'react'
 class Input extends Component {
 
   state = {
-    value: ''
+    value: '',
+    timeout: 0,
   }
 
+  componentDidMount() {
+    const defaultValue = this.props.defaultValue
+    if (defaultValue) this.setState({ value: defaultValue })
+  }
   handleChange = e => {
     const value = e.target.value
-    this.setState({ value })
-    this.props.onChange && this.props.onChange(value)
+    clearTimeout(this.state.timeout)
+    const timeout = setTimeout(() => this.props.onChange && this.props.onChange(value), 500)
+    this.setState({ value, timeout })
   }
 
   render() {
