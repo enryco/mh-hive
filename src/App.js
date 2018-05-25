@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch, withRouter } from 'react-router-dom'
 
 import firebase from './firebase'
 
@@ -23,6 +23,7 @@ class App extends Component {
     data: {},
     isLoading: true,
     headerHeight: 0,
+    search: '',
   }
 
   headerRef = null
@@ -46,13 +47,42 @@ class App extends Component {
     })
   }
 
+  filterSearch = data => {
+    const search = this.state.search.toLocaleLowerCase()
+
+    if (!search) return data
+
+    // preselect category all if none is selected
+    if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
+
+    return _.filter(data, (record, key) => {
+
+      let found = false
+
+      const recursivlyFind = entry => {
+
+        if (found) return null
+        if (_.isObject(entry)) return _.forEach(entry, recursivlyFind)
+        if (_.isString(entry)) {
+          if (entry.toLocaleLowerCase().indexOf(search) !== -1) {
+            found = true
+          }
+        }
+      }
+
+      recursivlyFind(record)
+
+      return found
+
+    })
+  }
+
   render() {
 
     const { data, isLoading, headerHeight } = this.state
 
     const tableNames = {}
     _.forEach(_.keys(data), key => tableNames[slugify(key, { lower: true })] = key)
-    console.log(tableNames)
 
     return (
       <div className="App">
@@ -86,8 +116,8 @@ class App extends Component {
                   <div className="mh-app__select" style={{ margin: 5, }}>
                     <SelectPillars match={match} history={history} items={_.keys(data)} />
                     <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
-                    <PrimarySearchBar />
-                    <ListWithCategory items={_.get(data, `${tableNames[match.params.pillar]}`)} />
+                    <PrimarySearchBar onChange={value => this.setState({ search: value })} />
+                    <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} />
                   </div>)
                 } />
 
@@ -103,7 +133,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const AppWithRouter = withRouter(App)
+
+export default AppWithRouter;
+
+
 
 
 

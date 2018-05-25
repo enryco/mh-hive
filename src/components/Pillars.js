@@ -60,7 +60,7 @@ const Pillars = props => {
       }
 
       <div style={{ gridArea: 'sb', display: '' }} >
-        <PrimarySearchBar />
+        {/* <PrimarySearchBar /> */}
       </div>
     </div>
   )

@@ -9,8 +9,6 @@ class SingleView extends Component {
   renderItem = (header, index, headersArray) => {
 
     const item = this.props.item
-    console.log(item)
-
 
     let content = item[header]
     if (!content) return null
