@@ -11,6 +11,8 @@ import pillarPolicy from "../assets/pillar-policy.png"
 import pillarResearch from "../assets/pillar-research.png"
 
 import PrimarySearchBar from './PrimarySearchBar'
+import Button from './general/Button'
+import Label from './general/Label'
 
 
 const Pillars = props => {
@@ -27,11 +29,12 @@ const Pillars = props => {
       paddingTop: '50px',
       display: 'grid',
       gridTemplateAreas: `
+      ". label label ."
       ". Education Policy ."
       ". Innovation Research ."
       ". sb sb ."`,
       gridTemplateColumns: 'auto 1fr 1fr auto',
-      gridTemplateRows: '1fr 1fr 1fr',
+      gridTemplateRows: 'auto 1fr 1fr auto',
       gridGap: '1em',
     },
     img: {
@@ -42,6 +45,19 @@ const Pillars = props => {
 
   return (
     <div className="mh-pillars" style={styles.container}>
+      <div style={{ gridArea: 'label' }}>
+        <div style={{
+          fontSize: '24px',
+          fontWeight: 'bold',
+        }}>
+          Welcome to the Hive
+        </div>
+        <p></p>
+        <Label >
+          <div style={{ marginRight: 5 }}>🎯</div>
+          <div>Pillars</div>
+        </Label>
+      </div>
       {
         _.map(props.items, (item, index) => {
 
@@ -64,9 +80,13 @@ const Pillars = props => {
           defaultValue={props.defaultValue}
           onChange={props.onChange}
         />
-        <div style={{ fontSize: 17 }}>
-          Go Back to Mhhub
-      </div>
+        <div style={{ fontSize: 17, marginTop: 81 }}>
+          <Label style={{ gridArea: 'label' }}>
+            <div style={{ marginRight: 5 }}>⏭</div>
+            <div>Leave the Hive</div>
+          </Label>
+          <Button onClick={() => window.location.href = 'https://mhhub.org'} >Back to mhhub.org</Button>
+        </div>
       </div>
 
     </div>

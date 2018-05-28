@@ -19,6 +19,7 @@ const Label = props => {
             lineHeight: 'normal',
             letterSpacing: 'normal',
             color: '#505050',
+            ...props.style
         }} >
             {props.children}
         </div>
