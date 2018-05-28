@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { ChevronRight } from './general/fontawesomes';
 import { Link } from 'react-router-dom'
-import _ from 'lodash'
 
 const Item = props => {
   const styles = {

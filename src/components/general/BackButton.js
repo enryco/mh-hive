@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { ChevronLeft } from './fontawesomes';
 
@@ -7,7 +7,7 @@ const Button = props => {
   const goBack = () => history.push(history.location.pathname.slice(0, history.location.pathname.lastIndexOf('/')))
 
 
-  const { match, history } = props
+  const { history } = props
 
   return <button style={styles.button} onClick={goBack} ><ChevronLeft style={{ marginRight: 5 }} />{'Back'}</button>
 
@@ -27,7 +27,6 @@ const styles = {
     height: 44,
     paddingLeft: 14,
     paddingRight: 14,
-    background: '#FFF',
     borderRadius: 6,
     fontWeight: 'bold',
     fontSize: 17,

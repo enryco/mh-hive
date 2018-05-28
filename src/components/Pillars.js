@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PillarButton from './general/PillarButton'
-import { Switch, Link, Route, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import slugify from 'slugify';
-import { LightBulb } from './general/fontawesomes';
 
 import pillarInnovation from "../assets/pillar-innovation.png"
 import pillarEducation from "../assets/pillar-mission.png"
@@ -54,7 +53,7 @@ const Pillars = props => {
         </div>
         <p></p>
         <Label >
-          <div style={{ marginRight: 5 }}>🎯</div>
+          <span style={{ marginRight: 5 }} role="img" aria-label="bullseye">🎯</span>
           <div>Pillars</div>
         </Label>
       </div>
@@ -82,7 +81,7 @@ const Pillars = props => {
         />
         <div style={{ fontSize: 17, marginTop: 81 }}>
           <Label style={{ gridArea: 'label' }}>
-            <div style={{ marginRight: 5 }}>⏭</div>
+            <span style={{ marginRight: 5 }} role="img" aria-label="forward">⏭</span>
             <div>Leave the Hive</div>
           </Label>
           <Button onClick={() => window.location.href = 'https://mhhub.org'} >Back to mhhub.org</Button>

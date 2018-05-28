@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Input from './general/Input'
 
 
@@ -21,7 +21,7 @@ const SecondarySearchBar = props => {
       placeholder={placeholder}
       onChange={onChange}
     />
-    <div>🔍</div>
+    <span role="img" aria-label="magnifying glas">🔍</span>
   </div>
   )
 }

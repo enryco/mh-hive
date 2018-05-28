@@ -1,11 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import { Switch, Link, Route, withRouter } from 'react-router-dom'
-import slugify from 'slugify'
-
-import SecondarySearchBar from './SecondarySearchBar'
-import PolicyListItem from './PolicyListItem'
-import SingleView from './SingleView'
+import { Route } from 'react-router-dom'
 import ListItem from './ListItem'
 
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const Button = props => {
 
@@ -21,7 +21,6 @@ const styles = {
     height: 44,
     paddingLeft: 14,
     paddingRight: 14,
-    background: '#FFF',
     borderRadius: 6,
     fontWeight: 'bold',
     fontSize: 17,

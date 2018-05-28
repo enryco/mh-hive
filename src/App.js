@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, Switch, withRouter, Redirect } from 'react-router-dom'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 
 import firebase from './firebase'
 
@@ -134,7 +134,7 @@ class App extends Component {
         >
           {
             isLoading ?
-              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }}>💃</span><br />Fetching data.. </div> :
+              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }} role="img" aria-label="dancer">💃</span><br />Fetching data.. </div> :
               <div className="mh-app__main">
 
                 <Route exact path='/' render={() => <div>

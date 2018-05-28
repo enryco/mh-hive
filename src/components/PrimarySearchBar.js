@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Input from './general/Input'
 import Label from './general/Label'
 
@@ -8,7 +8,7 @@ const PrimarySearchBar = props => {
   return (
     <div style={{ flex: "auto", ...props.style }}>
       <Label>
-        <div style={{ marginRight: 5 }}>🔍</div>
+        <div style={{ marginRight: 5 }}><span role="img" aria-label="magnifying glas">🔍</span></div>
         <div>{label ? label : 'Search'}</div>
       </Label>
       <div style={{

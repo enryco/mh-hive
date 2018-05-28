@@ -3,7 +3,6 @@ import Label from './general/Label'
 import slugify from 'slugify'
 import { Collapse } from 'react-collapse'
 import { presets } from 'react-motion'
-import { Route } from 'react-router-dom'
 
 import _ from 'lodash'
 import { CaretDown } from './general/fontawesomes'
@@ -45,7 +44,7 @@ class CategoryList extends Component {
 
   navigate = (slug) => {
 
-    const { history, match } = this.props
+    const { history } = this.props
 
     history.push(`/${slug}`)
     this.handleCollapse()
@@ -78,14 +77,13 @@ class CategoryList extends Component {
 
   render() {
 
-    const { items, history, match } = this.props
-    const { isOpened } = this.state
+    const { items } = this.props
     const styles = this.styles
 
     return (
       <div style={{ flex: '1', marginRight: 10 }}>
         <Label>
-          <div style={{ marginRight: 5 }}>🎯</div>
+          <span style={{ marginRight: 5 }} role="img" aria-label="bullseye">🎯</span>
           <div>Pillar</div>
         </Label>
         <div style={styles.list} >

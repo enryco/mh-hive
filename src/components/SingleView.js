@@ -15,26 +15,32 @@ class SingleView extends Component {
     let content = item[header]
     if (!content) return null
 
-
+    // format
     if (_.isArray(content) && _.isObject(content[0])) content = <Visual file={content[0]} />
     if (_.isObject(content) && _.isObject(content[0])) return null
     if (_.isArray(content) && !_.isObject(content[0])) content = _.reduce(content, (item, acc) => acc += ', ' + item)
 
-    // format or exclude some fields
-    switch (header) {
-      case "Country": content = item.isoCountryCode ? <span><ReactCountryFlag code={item.isoCountryCode} />{' ' + content}</span> : content
+    // format content
+    switch (content) {
+      case true:
+        content = '✅ Yes'
+        break
+      case false:
+        content = 'No'
+        break
       default: break
     }
 
-    // format certain fields
-    switch (content) {
-      case true: content = '✅ Yes'; break
-      case false: content = 'No'; break
-    }
-
+    // format header
     switch (header) {
-      case 'Visual': header = ''
-      case 'Logo': header = ''
+      case "Country":
+        content = item.isoCountryCode ? <span><ReactCountryFlag code={item.isoCountryCode} />{' ' + content}</span> : content
+        break
+      case 'Visual':
+        header = ''
+        break
+      case 'Logo':
+        header = ''
         break
 
       default:
