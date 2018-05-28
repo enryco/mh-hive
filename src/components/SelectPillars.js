@@ -83,7 +83,7 @@ class CategoryList extends Component {
     const styles = this.styles
 
     return (
-      <div style={{ margin: 5, flex: '1' }}>
+      <div style={{ flex: '1', marginRight: 10 }}>
         <Label>
           <div style={{ marginRight: 5 }}>🎯</div>
           <div>Pillar</div>

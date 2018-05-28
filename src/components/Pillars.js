@@ -64,7 +64,11 @@ const Pillars = props => {
           defaultValue={props.defaultValue}
           onChange={props.onChange}
         />
+        <div style={{ fontSize: 17 }}>
+          Go Back to Mhhub
       </div>
+      </div>
+
     </div>
   )
 }

@@ -6,7 +6,7 @@ const PrimarySearchBar = props => {
   const { onChange, placeholder, label, defaultValue } = props
 
   return (
-    <div style={{ margin: 5, flex: "auto" }}>
+    <div style={{ flex: "auto", ...props.style }}>
       <Label>
         <div style={{ marginRight: 5 }}>🔍</div>
         <div>{label ? label : 'Search'}</div>

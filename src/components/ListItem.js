@@ -18,7 +18,6 @@ const Item = props => {
       color: '#333',
       height: 70,
       borderBottom: "1px solid grey",
-      marginLeft: 10,
       paddingBottom: 10,
       paddingTop: 10,
       cursor: 'pointer',

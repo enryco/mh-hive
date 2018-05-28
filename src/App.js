@@ -152,18 +152,18 @@ class App extends Component {
                 <Switch>
                   <Redirect exact path='/all' to='/all/all' />
                   <Route path='/all/all' render={({ match, history }) => (
-                    <div className="mh-app__select" style={{ margin: 5, }}>
+                    <div className="mh-app__select" style={{ paddingLeft: 10, }}>
                       <SelectPillars match={match} history={history} items={_.keys(data)} />
-                      <PrimarySearchBar defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
+                      <PrimarySearchBar style={{ marginRight: 10 }} defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
                       <List items={this.filterSearch(this.getAllItems(data))} windowSize={this.state.windowSize} />
                     </div>)
                   }
                   />
                   <Route path='/:pillar' render={({ match, history }) => (
-                    <div className="mh-app__select" style={{ margin: 5, }}>
+                    <div className="mh-app__select" style={{ paddingLeft: 10, }}>
                       <SelectPillars match={match} history={history} items={_.keys(data)} />
                       <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
-                      <PrimarySearchBar defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
+                      <PrimarySearchBar style={{ marginRight: 10 }} defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
                       <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} windowSize={this.state.windowSize} />
                     </div>)
                   }
@@ -172,11 +172,11 @@ class App extends Component {
 
                 <Switch>
                   <Route exact path={`/all/all/:id`} render={({ match }) => <div className="mh-app__single-view">
-                    <SingleView item={_.find(this.getAllItems(clone), record => record.id === match.params.id)}    windowSize={this.state.windowSize}/>
+                    <SingleView item={_.find(this.getAllItems(clone), record => record.id === match.params.id)} windowSize={this.state.windowSize} />
                   </div>} />
 
                   <Route path={`/:pillar/:category/:id`} render={({ match }) => <div className="mh-app__single-view">
-                    <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}`)}    windowSize={this.state.windowSize}/>
+                    <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}`)} windowSize={this.state.windowSize} />
                   </div>} />
                 </Switch>
 

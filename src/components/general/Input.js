@@ -47,7 +47,9 @@ class Input extends Component {
             lineHeight: 'normal',
             letterSpacing: 'normal',
             color: '#505050',
-            outline: 'none'
+            outline: 'none',
+            fontSize: 'inherit'
+
           }}
         />
         {
