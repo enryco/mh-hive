@@ -31,10 +31,19 @@ class CategoryList extends Component {
     // preselect all
     // if (this.props.history.location.pathname.split('/').length < 3) this.props.history.push(this.props.history.location.pathname + '/all')
 
+    // open if mounted
+    this.openCategoriesOnInitialPillar()
   }
 
   componentWillReceiveProps(nextProps) {
     this.handleCategories(nextProps.items)
+    this.openCategoriesOnInitialPillar()
+
+  }
+
+  openCategoriesOnInitialPillar = () => {
+    if (this.props.history.location.pathname.split('/').length < 3) this.setState({ isOpened: true })
+
   }
 
   getSelected = () => {
