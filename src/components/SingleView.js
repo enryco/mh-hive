@@ -85,7 +85,7 @@ class SingleView extends Component {
   render() {
     window.scrollTo(0, 0)
 
-    const { item, match } = this.props
+    const { item, match, windowSize } = this.props
 
     const tableNameSlug = item && item.tableName && slugify(item.tableName, { lower: true })
     const pillar = match.params.pillar || tableNameSlug
@@ -94,13 +94,15 @@ class SingleView extends Component {
 
 
     return (
-      <div style={{ margin: 10, marginTop: 20, width: "calc(100vw - 20px)" }} >
+      <div style={{ margin: 10, marginTop: 20 }} >
         <Linkify>
           {
             _.map(headers[pillar], this.renderItem)
           }
         </Linkify>
-        <BackButton />
+        {
+          windowSize.width < 768 && <BackButton />
+        }
       </div>
     )
   }

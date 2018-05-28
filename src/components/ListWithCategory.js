@@ -40,9 +40,9 @@ class ListWithCategory extends Component {
 
   render() {
 
-    const { items } = this.props
+    const { items, windowSize } = this.props
 
-    return <Route exact path={`/:pillar/:category`} render={({ match }) => _.map(this.filterByCategory(items, match.params.category), (item, key) => this.renderItem(item, key, match))} />
+    return <Route exact={windowSize.width < 768} path={`/:pillar/:category`} render={({ match }) => _.map(this.filterByCategory(items, match.params.category), (item, key) => this.renderItem(item, key, match))} />
 
 
   }

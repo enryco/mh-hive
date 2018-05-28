@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { TimesCircle } from './fontawesomes';
 class Input extends Component {
 
   state = {
@@ -28,7 +28,8 @@ class Input extends Component {
           width: "100%",
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          fontSize: 17
         }}
       >
         <input
@@ -40,7 +41,6 @@ class Input extends Component {
           style={{
             width: "100%",
             border: "0",
-            fontSize: 17,
             fontWeight: 'normal',
             fontStyle: 'normal',
             fontStretch: 'normal',
@@ -50,6 +50,18 @@ class Input extends Component {
             outline: 'none'
           }}
         />
+        {
+          this.state.value && <div
+            style={{
+              cursor: 'pointer',
+              color: '#333'
+            }}
+            onClick={() => { this.input.value = ''; this.handleChange({ target: this.input }) }}
+          >
+            <TimesCircle />
+          </div>
+        }
+
       </div>
     )
   }

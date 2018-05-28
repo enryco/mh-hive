@@ -25,14 +25,33 @@
         }
     }
 
-    .mh-app-select-area {
-    }
-
-    .mh-app-select-and-search {
-
-    }
-
     .mh-pillars {
         grid-template-columns: 1fr 1fr 1fr 1fr !important;
     }
+}
+
+@media all and (min-width: 768px) {
+
+    .mh-app {
+        &__main {
+            display: flex;
+        }
+
+        &__select {
+            width: 33vw;
+            margin: 0 !important;
+            height: calc(100vh - 60px);
+            overflow: scroll;
+            border-right: 2px solid hsl(0, 0%, 40%);
+        }
+
+        &__single-view {
+            position: fixed;
+            right: 0;
+            width: 66vw;
+            height: calc(100vh - 60px);
+            overflow: scroll;
+        }
+    }
+
 }

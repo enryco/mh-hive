@@ -24,6 +24,10 @@ class App extends Component {
     isLoading: true,
     headerHeight: 0,
     search: '',
+    windowSize: {
+      height: 0,
+      width: 0,
+    }
   }
 
   headerRef = null
@@ -44,6 +48,17 @@ class App extends Component {
     })
 
     this.setHeaderHeight()
+
+    // add resize listener
+    const setWindowSize = () => this.setState({
+      windowSize: {
+        height: window.innerHeight,
+        width: window.innerWidth
+      }
+    })
+
+    window.onresize = setWindowSize
+    setWindowSize()
 
   }
 
@@ -120,7 +135,7 @@ class App extends Component {
           {
             isLoading ?
               <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }}>💃</span><br />Fetching data.. </div> :
-              <div>
+              <div className="mh-app__main">
 
                 <Route exact path='/' render={() => <div>
                   <Pillars
@@ -140,7 +155,7 @@ class App extends Component {
                     <div className="mh-app__select" style={{ margin: 5, }}>
                       <SelectPillars match={match} history={history} items={_.keys(data)} />
                       <PrimarySearchBar defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
-                      <List items={this.filterSearch(this.getAllItems(data))} />
+                      <List items={this.filterSearch(this.getAllItems(data))} windowSize={this.state.windowSize} />
                     </div>)
                   }
                   />
@@ -149,7 +164,7 @@ class App extends Component {
                       <SelectPillars match={match} history={history} items={_.keys(data)} />
                       <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
                       <PrimarySearchBar defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
-                      <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} />
+                      <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} windowSize={this.state.windowSize} />
                     </div>)
                   }
                   />
@@ -157,11 +172,11 @@ class App extends Component {
 
                 <Switch>
                   <Route exact path={`/all/all/:id`} render={({ match }) => <div className="mh-app__single-view">
-                    <SingleView item={_.find(this.getAllItems(clone), record => record.id === match.params.id)} />
+                    <SingleView item={_.find(this.getAllItems(clone), record => record.id === match.params.id)}    windowSize={this.state.windowSize}/>
                   </div>} />
 
                   <Route path={`/:pillar/:category/:id`} render={({ match }) => <div className="mh-app__single-view">
-                    <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}`)} />
+                    <SingleView item={_.get(data, `${tableNames[match.params.pillar]}.${match.params.id}`)}    windowSize={this.state.windowSize}/>
                   </div>} />
                 </Switch>
 
