@@ -8,6 +8,17 @@ import BackButton from './general/BackButton'
 
 class SingleView extends Component {
 
+  componentDidMount() {
+    // const top = this.singleView ? this.singleView.getBoundingClientRect().top : 0
+    // window.scrollTo(0, top - 60)
+    window.scrollTo(0, 250)
+  }
+
+
+
+  singleView = null
+
+
   renderItem = (header, index, headersArray) => {
 
     const item = this.props.item.fields
@@ -88,8 +99,9 @@ class SingleView extends Component {
   }
 
 
+
+
   render() {
-    window.scrollTo(0, 0)
 
     const { item, match, windowSize } = this.props
 
@@ -100,7 +112,9 @@ class SingleView extends Component {
 
 
     return (
-      <div style={{ margin: 10, marginTop: 20 }} >
+      <div
+        ref={e => this.singleView = e}
+        style={{ margin: 10, marginTop: 20 }}  >
         <Linkify>
           {
             _.map(headers[pillar], this.renderItem)
