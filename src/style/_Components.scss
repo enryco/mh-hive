@@ -1,7 +1,13 @@
-@media all and (min-width: 426px) {
+@media all and (min-width: 426px) {}
+
+@media all and (min-width: 768px) {
     .mh-pillar-button {
         flex-flow: row !important;
         text-align: left !important;
+    }
+
+    .mh-pillars {
+        grid-template-columns: 1fr 1fr 1fr 1fr !important;
     }
 
     .mh-single-view {
@@ -25,13 +31,6 @@
         }
     }
 
-    .mh-pillars {
-        grid-template-columns: 1fr 1fr 1fr 1fr !important;
-    }
-}
-
-@media all and (min-width: 768px) {
-
     .mh-app {
         &__main {
             display: flex;
@@ -52,5 +51,4 @@
             overflow: scroll;
         }
     }
-
 }

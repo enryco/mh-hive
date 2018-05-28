@@ -9,8 +9,10 @@ class Input extends Component {
 
   componentDidMount() {
     const defaultValue = this.props.defaultValue
-    if (defaultValue) this.setState({ value: defaultValue })
-    this.input.focus()
+    if (defaultValue) {
+      this.setState({ value: defaultValue })
+      // this.input.focus()
+    }
   }
   handleChange = e => {
     const value = e.target.value
