@@ -5,7 +5,8 @@ import slugify from 'slugify'
 
 import PolicyListItem from './PolicyListItem'
 import ListItem from './ListItem'
-import { getCategoryName } from '../general/utils';
+
+import { getCategoryName } from '../../utils';
 
 
 class ListWithCategory extends Component {

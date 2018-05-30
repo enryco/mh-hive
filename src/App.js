@@ -18,7 +18,7 @@ import List from './components/lists/List'
 
 import SingleView from './components/SingleView'
 
-import { getSelectCategories } from './components/general/utils';
+import { getSelectCategories } from './utils';
 
 
 // import { datadump } from './datadump'
