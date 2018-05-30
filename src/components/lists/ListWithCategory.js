@@ -20,8 +20,18 @@ class ListWithCategory extends Component {
     const fieldname = getCategoryName(pillar)
 
     return _.filter(items, item => {
+
+      const categoryMatch = (itemCategory, category) => slugify(itemCategory, { lower: true }) === category
       const itemCategory = _.get(item, `fields.${fieldname}`)
-      if (itemCategory) return slugify(itemCategory, { lower: true }) === category
+      if (!itemCategory) return false
+
+      if (_.isArray(itemCategory)) {
+        return _.find(itemCategory, item => categoryMatch(item, category))
+      } else {
+        console.log(itemCategory)
+
+        return categoryMatch(itemCategory, category)
+      }
       return false
     })
   }
