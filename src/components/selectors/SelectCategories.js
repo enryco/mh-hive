@@ -5,7 +5,8 @@ import { presets } from 'react-motion'
 import _ from 'lodash'
 
 import Label from '../general/Label'
-import { CaretDown } from '../general/fontawesomes'
+import Item from './Item'
+import ItemSelector from './ItemSelector'
 
 class CategoryList extends Component {
 
@@ -96,7 +97,7 @@ class CategoryList extends Component {
           <div>{match.params.pillar === 'research' ? 'Best suited for' : 'Category'}</div>
         </Label>
         <div style={styles.list} >
-          <Selector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</Selector>
+          <ItemSelector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</ItemSelector>
         </div>
 
         <Collapse isOpened={this.state.isOpened} springConfig={presets.stiff}  >
@@ -125,54 +126,3 @@ class CategoryList extends Component {
 
 
 export default CategoryList
-
-const Selector = props => {
-  return <div
-    style={{
-      display: 'flex',
-      flexFlow: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingLeft: 10,
-      paddingRight: 10,
-      fontSize: 17,
-      fontWeight: 'bold',
-      color: '#333333',
-      height: 44,
-      borderRadius: 6,
-      backgroundColor: '#7bd7e5',
-      cursor: 'pointer'
-    }}
-    onClick={props.onClick} >
-    {props.children}<CaretDown style={{ marginLeft: 5 }} />
-  </div>
-}
-
-const Item = props => {
-  return <div
-    style={{
-      display: 'flex',
-      flexFlow: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      paddingLeft: 10,
-      fontSize: 17,
-      fontWeight: 'bold',
-      fontStyle: 'normal',
-      fontStretch: 'normal',
-      lineHeight: 'normal',
-      letterSpacing: 'normal',
-      color: props.index > -2 ? '#333333' : '#FFF',
-      height: 44,
-      borderBottomLeftRadius: props.lastItem ? 6 : 0,
-      borderBottomRightRadius: props.lastItem ? 6 : 0,
-      borderTopLeftRadius: props.index === 0 ? 6 : 0,
-      borderTopRightRadius: props.index === 0 ? 6 : 0,
-      backgroundColor: props.selected ? 'lightgrey' : '#ffffff',
-      cursor: 'pointer',
-      borderBottom: props.lastItem ? '' : '1px solid lightgrey'
-    }}
-    onClick={props.onClick} >
-    {props.children}
-  </div>
-}
