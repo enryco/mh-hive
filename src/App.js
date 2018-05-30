@@ -18,6 +18,9 @@ import List from './components/lists/List'
 
 import SingleView from './components/SingleView'
 
+import { getSelectCategories } from './components/general/utils';
+
+
 // import { datadump } from './datadump'
 
 class App extends Component {
@@ -197,29 +200,3 @@ export default AppWithRouter;
 
 
 
-
-const getSelectCategories = (table, tabelSlug) => {
-
-  const SelectCategories = {}
-
-  let fieldname = 'Categories'
-  switch (tabelSlug) {
-    case "education-and-learning": fieldname = "Category"; break;
-    case "innovation": fieldname = "Category"; break;
-    case "policy": fieldname = "Category"; break;
-    case "research": fieldname = "Best suited for"; break;
-    default: fieldname = "Category"; break;
-  }
-
-  _.map(table, row => {
-    const push = category => { if (category) SelectCategories[category] = true }
-
-    const category = _.get(row, `fields.${fieldname}`)
-    if (_.isArray(category)) _.map(category, categoryOfArray => push(categoryOfArray))
-  })
-
-  const categories = _.map(SelectCategories, (cat, key) => key)
-  console.log(SelectCategories)
-  return categories
-
-}
