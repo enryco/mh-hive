@@ -20,7 +20,7 @@ export const getSelectCategories = (table, tableSlug) => {
   const SelectCategories = {}
 
   _.map(table, row => {
-    const push = category => { if (category) SelectCategories[category] = true }
+    const push = category => { if (category) SelectCategories[_.capitalize(category)] = true }
 
     const category = _.get(row, `fields.${fieldname}`)
     if (_.isArray(category)) {
