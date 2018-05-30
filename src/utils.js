@@ -32,7 +32,6 @@ export const getSelectCategories = (table, tableSlug) => {
 
   const categories = _.sortBy(_.keys(SelectCategories))
 
-  console.log(categories)
   return categories
 
 }
