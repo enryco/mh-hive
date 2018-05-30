@@ -51,7 +51,13 @@ const Pillars = props => {
         }}>
           Welcome to the Hive
         </div>
-        <p></p>
+        <p>
+          Explore these 4 pillars of progress! <br />
+          Get a broad range of evidence-based research around menstrual health,
+          creative or innovative educational approaches,
+          a catalog of global menstrual products, technologies & service
+          and discover the different menstruation-related policies around the world.
+        </p>
         <Label >
           <span style={{ marginRight: 5 }} role="img" aria-label="bullseye">🎯</span>
           <div>Pillars</div>
@@ -79,14 +85,24 @@ const Pillars = props => {
           defaultValue={props.defaultValue}
           onChange={props.onChange}
         />
+
         <div style={{ fontSize: 17, marginTop: 81 }}>
           <Label style={{ gridArea: 'label' }}>
             <span style={{ marginRight: 5 }} role="img" aria-label="forward">⏭</span>
             <div>Leave the Hive</div>
           </Label>
-          <Button onClick={() => window.location.href = 'https://mhhub.org'} >Back to mhhub.org</Button>
+          <Button onClick={() => window.location.href = 'https://mhhub.org'} >Back to the MH Hub</Button>
         </div>
+        <br />
+        <div >
+          <Label style={{ gridArea: 'label' }}>
+            <span style={{ marginRight: 5 }} role="img" aria-label="judge">{_.sample(['👩‍⚖️','👨‍⚖️'])}</span>
+            <div>Legal notice</div>
+          </Label>
+          © 2018 Menstrual Health Hub. Visit <a href="https://mhhub.org">https://mhhub.org</a> for more information.
       </div>
+      </div>
+
 
     </div>
   )

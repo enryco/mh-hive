@@ -140,7 +140,7 @@ class App extends Component {
         >
           {
             isLoading ?
-              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }} role="img" aria-label="dancer">💃</span><br />Fetching data.. </div> :
+              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }} role="img" aria-label="dancer">{_.sample(['💃','🕺'])}</span><br />Fetching data.. </div> :
               <div className="mh-app__main">
 
                 <Route exact path='/' render={() => <div>
