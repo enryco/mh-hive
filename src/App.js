@@ -156,21 +156,20 @@ class App extends Component {
                   <Redirect exact path='/all' to='/all/all' />
                   <Route path='/all/all' render={({ match, history }) => (
                     <div className="mh-app__select" style={{ paddingLeft: 10, }}>
-                      <SelectPillars match={match} history={history} items={_.keys(data)} />
+                      <SelectPillars history={history} items={_.keys(data)} />
                       <PrimarySearchBar style={{ marginRight: 10 }} defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
                       <List items={this.filterSearch(this.getAllItems(data))} windowSize={this.state.windowSize} />
                     </div>)
-                  }
-                  />
+                  } />
+
                   <Route path='/:pillar' render={({ match, history }) => (
                     <div className="mh-app__select" style={{ paddingLeft: 10, }}>
-                      <SelectPillars match={match} history={history} items={_.keys(data)} />
-                      <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]))} />
+                      <SelectPillars history={history} items={_.keys(data)} />
+                      <SelectCategories match={match} history={history} items={getSelectCategories(_.get(data, tableNames[match.params.pillar]), match.params.pillar)} />
                       <PrimarySearchBar style={{ marginRight: 10 }} defaultValue={this.state.search} onChange={value => this.setState({ search: value })} />
                       <ListWithCategory items={this.filterSearch(_.get(data, `${tableNames[match.params.pillar]}`))} windowSize={this.state.windowSize} />
                     </div>)
-                  }
-                  />
+                  } />
                 </Switch>
 
                 <Switch>
@@ -199,12 +198,28 @@ export default AppWithRouter;
 
 
 
-const getSelectCategories = table => {
-  const Selectcategories = {}
+const getSelectCategories = (table, tabelSlug) => {
+
+  const SelectCategories = {}
+
+  let fieldname = 'Categories'
+  switch (tabelSlug) {
+    case "education-and-learning": fieldname = "Category"; break;
+    case "innovation": fieldname = "Category"; break;
+    case "policy": fieldname = "Category"; break;
+    case "research": fieldname = "Best suited for"; break;
+    default: fieldname = "Category"; break;
+  }
 
   _.map(table, row => {
-    const category = _.get(row, 'fields.Category')
-    if (category) Selectcategories[category] = true
+    const push = category => { if (category) SelectCategories[category] = true }
+
+    const category = _.get(row, `fields.${fieldname}`)
+    if (_.isArray(category)) _.map(category, categoryOfArray => push(categoryOfArray))
   })
-  return _.map(Selectcategories, (cat, key) => key)
+
+  const categories = _.map(SelectCategories, (cat, key) => key)
+  console.log(SelectCategories)
+  return categories
+
 }

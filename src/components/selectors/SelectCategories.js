@@ -86,14 +86,14 @@ class CategoryList extends Component {
 
   render() {
 
-    const { items } = this.props
+    const { items, match } = this.props
     const styles = this.styles
 
     return (
       <div style={{ flex: 'auto', marginRight: 10 }}>
         <Label>
           <span style={{ marginRight: 5 }} role="img" aria-label="alembic">⚗️</span>
-          <div>Category</div>
+          <div>{match.params.pillar === 'research' ? 'Best suited for' : 'Category'}</div>
         </Label>
         <div style={styles.list} >
           <Selector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</Selector>
