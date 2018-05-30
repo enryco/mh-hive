@@ -1,6 +1,7 @@
 import React from 'react'
 import { ChevronRight } from '../general/fontawesomes';
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 
 const Item = props => {
   const styles = {
@@ -43,9 +44,24 @@ const Item = props => {
     }
   }
 
+
+
   if (!props.item.fields) return null
 
   const { Title, About, Description } = props.item.fields
+
+  const visual = (() => {
+    const visuals = _.get(props, 'item.fields.Visual') || _.get(props, 'item.fields.Logo')
+    console.log(visuals)
+
+    if (!visuals) return null
+    if (!_.isArray(visuals)) return null
+
+    const visual = visuals[0]
+    const mediaLink = visual.thumbnails ? visual.thumbnails.large.mediaLink : visual.mediaLink
+
+    return <img style={{ maxHeight: 80, maxWidth: 80, marginRight: 15 }} src={mediaLink} alt="" />
+  })()
 
 
   return (
@@ -59,6 +75,9 @@ const Item = props => {
             {About || Description}
           </div>
         </div>
+
+        {visual}
+
         <div style={{ marginRight: 10 }}><ChevronRight /></div>
       </div>
     </Link>
