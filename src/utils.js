@@ -30,8 +30,9 @@ export const getSelectCategories = (table, tableSlug) => {
     }
   })
 
-  const categories = _.map(SelectCategories, (cat, key) => key)
-  console.log(SelectCategories)
+  const categories = _.sortBy(_.keys(SelectCategories))
+
+  console.log(categories)
   return categories
 
 }
