@@ -33,7 +33,6 @@ class ListWithCategory extends Component {
 
         return categoryMatch(itemCategory, category)
       }
-      return false
     })
   }
 
