@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import _ from 'lodash'
 import ReactCountryFlag from 'react-country-flag'
-import Linkify from './general/Linkify'
 import slugify from 'slugify';
+
+import Linkify from './general/Linkify'
 import BackButton from './general/BackButton'
 
 class SingleView extends Component {

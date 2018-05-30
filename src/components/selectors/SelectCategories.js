@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Label from './general/Label'
 import slugify from 'slugify'
 import { Collapse } from 'react-collapse'
 import { presets } from 'react-motion'
-
 import _ from 'lodash'
-import { CaretDown } from './general/fontawesomes'
+
+import Label from '../general/Label'
+import { CaretDown } from '../general/fontawesomes'
 
 class CategoryList extends Component {
 

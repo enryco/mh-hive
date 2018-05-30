@@ -9,7 +9,7 @@ import pillarEducation from "../assets/pillar-mission.png"
 import pillarPolicy from "../assets/pillar-policy.png"
 import pillarResearch from "../assets/pillar-research.png"
 
-import PrimarySearchBar from './PrimarySearchBar'
+import PrimarySearchBar from './general/PrimarySearchBar'
 import Button from './general/Button'
 import Label from './general/Label'
 

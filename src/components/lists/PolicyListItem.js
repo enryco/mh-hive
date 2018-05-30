@@ -2,8 +2,8 @@ import React from 'react'
 import ReactCountryFlag from 'react-country-flag'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import { ChevronRight } from './general/fontawesomes';
 
+import { ChevronRight } from '../general/fontawesomes';
 
 const Item = props => {
 

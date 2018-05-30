@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from './general/Input'
+import Input from './Input'
 
 
 const SecondarySearchBar = props => {

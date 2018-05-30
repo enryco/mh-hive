@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import _ from 'lodash'
+import slugify from 'slugify';
 
 import firebase from './firebase'
 
-import _ from 'lodash'
-
-import SelectCategories from './components/SelectCategories'
-import SelectPillars from './components/SelectPillars'
-import ListWithCategory from './components/ListWithCategory'
-import List from './components/List'
 import Header from './components/Header'
+
 import Pillars from './components/Pillars'
-import PrimarySearchBar from './components/PrimarySearchBar'
-import slugify from 'slugify';
+import PrimarySearchBar from './components/general/PrimarySearchBar'
+
+import SelectCategories from './components/selectors/SelectCategories'
+import SelectPillars from './components/selectors/SelectPillars'
+
+import ListWithCategory from './components/lists/ListWithCategory'
+import List from './components/lists/List'
+
 import SingleView from './components/SingleView'
 
 // import { datadump } from './datadump'

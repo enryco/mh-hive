@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChevronRight } from './general/fontawesomes';
+import { ChevronRight } from '../general/fontawesomes';
 import { Link } from 'react-router-dom'
 
 const Item = props => {
