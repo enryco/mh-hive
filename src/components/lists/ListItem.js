@@ -52,8 +52,6 @@ const Item = props => {
 
   const visual = (() => {
     const visuals = _.get(props, 'item.fields.Visual') || _.get(props, 'item.fields.Logo')
-    console.log(visuals)
-
     if (!visuals) return null
     if (!_.isArray(visuals)) return null
 

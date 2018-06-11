@@ -29,8 +29,6 @@ class ListWithCategory extends Component {
       if (_.isArray(itemCategory)) {
         return _.find(itemCategory, item => categoryMatch(item, category))
       } else {
-        console.log(itemCategory)
-
         return categoryMatch(itemCategory, category)
       }
     })
