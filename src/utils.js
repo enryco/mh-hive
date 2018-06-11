@@ -5,7 +5,7 @@ export const getCategoryName = pillar => {
     "education-and-learning": "Category",
     "innovation": "Category",
     "policy": "Category",
-    "research": "Best suited for"
+    "research": "Type of research"
   }
 
   return _.get(categories, pillar)

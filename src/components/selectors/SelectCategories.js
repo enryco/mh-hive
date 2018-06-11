@@ -94,7 +94,7 @@ class CategoryList extends Component {
       <div style={{ flex: 'auto', marginRight: 10 }}>
         <Label>
           <span style={{ marginRight: 5 }} role="img" aria-label="alembic">⚗️</span>
-          <div>{match.params.pillar === 'research' ? 'Best suited for' : 'Category'}</div>
+          <div>{match.params.pillar === 'research' ? 'Type of research' : 'Category'}</div>
         </Label>
         <div style={styles.list} >
           <ItemSelector index={0} onClick={() => this.handleCollapse()} >{this.getSelected()}</ItemSelector>
