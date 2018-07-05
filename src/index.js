@@ -10,7 +10,7 @@ import ReactGA from 'react-ga'
 ReactGA.initialize(settings.ga)
 
 ReactDOM.render((
-  <BrowserRouter>
+  <BrowserRouter basename="hive">
     <div>
       <Route path="/" render={({ location }) => {
         ReactGA.pageview(location.pathname + location.search)

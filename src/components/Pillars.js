@@ -86,7 +86,7 @@ const Pillars = props => {
           onChange={props.onChange}
         />
 
-        <div style={{ fontSize: 17, marginTop: 81 }}>
+        {/* <div style={{ fontSize: 17, marginTop: 81 }}>
           <Label style={{ gridArea: 'label' }}>
             <span style={{ marginRight: 5 }} role="img" aria-label="forward">⏭</span>
             <div>Leave the Hive</div>
@@ -96,11 +96,11 @@ const Pillars = props => {
         <br />
         <div >
           <Label style={{ gridArea: 'label' }}>
-            <span style={{ marginRight: 5 }} role="img" aria-label="judge">{_.sample(['👩‍⚖️','👨‍⚖️'])}</span>
+            <span style={{ marginRight: 5 }} role="img" aria-label="judge">{_.sample(['👩‍⚖️', '👨‍⚖️'])}</span>
             <div>Legal notice</div>
           </Label>
           © 2018 Menstrual Health Hub. Visit <a href="https://mhhub.org">https://mhhub.org</a> for more information.
-      </div>
+      </div> */}
       </div>
 
 

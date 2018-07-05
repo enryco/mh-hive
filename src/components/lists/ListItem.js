@@ -58,7 +58,7 @@ const Item = props => {
     const visual = visuals[0]
     const mediaLink = visual.thumbnails ? visual.thumbnails.large.mediaLink : visual.mediaLink
 
-    return <img style={{ maxHeight: 80, maxWidth: 80, marginRight: 15 }} src={mediaLink} alt="" />
+    return <img style={{ maxHeight: 70, maxWidth: 70, marginRight: 15 }} src={mediaLink} alt="" />
   })()
 
 

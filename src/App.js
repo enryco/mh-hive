@@ -21,7 +21,7 @@ import SingleView from './components/SingleView'
 import { getSelectCategories } from './utils';
 
 
-// import { datadump } from './datadump'
+import { datadump } from './datadump'
 
 class App extends Component {
 
@@ -40,8 +40,20 @@ class App extends Component {
   contentRef = null
 
   componentDidMount() {
-    firebase.database().ref().once('value').then(snap => {
-      const data = snap.val()
+
+    console.log('Test')
+
+
+    // make header fixed
+    const wpHeader = document.getElementById('main-header')
+    if (wpHeader) wpHeader.className += 'et-fixed-header'
+    const wpFooter = document.getElementById('main-footer')
+    if (wpFooter) wpFooter.remove()
+
+    document.body.style.overflow = 'hidden'
+
+
+    const setData = data => {
       const clone = _.cloneDeep(data)
       _.forEach(data, (table, tableName) => {
         _.forEach(table, (record, recordId) => {
@@ -51,7 +63,14 @@ class App extends Component {
       })
 
       this.setState({ data, clone, isLoading: false })
+    }
+
+    firebase.database().ref().once('value').then(snap => {
+      const data = snap.val()
+      setData(data)
     })
+
+    // setData(datadump)
 
     this.setHeaderHeight()
 
@@ -69,13 +88,13 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.headerHeight !== this.headerRef.clientHeight) this.setHeaderHeight()
+    // if (prevState.headerHeight !== this.headerRef.clientHeight) this.setHeaderHeight()
   }
 
   setHeaderHeight = () => {
-    this.setState({
-      headerHeight: this.headerRef ? this.headerRef.clientHeight : 0
-    })
+    // this.setState({
+    //   headerHeight: this.headerRef ? this.headerRef.clientHeight : 0
+    // })
   }
 
   getAllItems = data => _.flatten(_.map(data, table => _.map(table, rows => rows)))
@@ -119,7 +138,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div
+        {/* <div
           ref={e => this.headerRef = e}
           style={{
             position: 'fixed',
@@ -130,7 +149,7 @@ class App extends Component {
           <Header onClick={() => null} items={_.keys(data)} />
 
 
-        </div>
+        </div> */}
 
         <div
           ref={e => this.contentRef = e}
@@ -140,7 +159,7 @@ class App extends Component {
         >
           {
             isLoading ?
-              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }} role="img" aria-label="dancer">{_.sample(['💃','🕺'])}</span><br />Fetching data.. </div> :
+              <div style={{ fontSize: 17, textAlign: 'center', paddingTop: 30 }}><span style={{ fontSize: 42 }} role="img" aria-label="dancer">{_.sample(['💃', '🕺'])}</span><br />Fetching data.. </div> :
               <div className="mh-app__main">
 
                 <Route exact path='/' render={() => <div>
