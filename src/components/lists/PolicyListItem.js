@@ -2,14 +2,22 @@ import React from 'react'
 import ReactCountryFlag from 'react-country-flag'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
+import countries from 'i18n-iso-countries'
 
 import { ChevronRight } from '../general/fontawesomes';
+
+countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 const Item = props => {
 
   if (!_.has(props, 'item.fields.Title')) return null
 
-  const { isoCountryCode, Title, } = props.item.fields
+  const { isoCountryCode, Title, Country } = props.item.fields
+
+  const _isoCountryCode = countries.getAlpha2Code(Country, 'en') || isoCountryCode
+
+  console.log(`_isoCountryCode`,_isoCountryCode)
+
 
   return <Link to={`${props.match.url}/${props.item.id}`}  >
     <div style={{
@@ -32,7 +40,9 @@ const Item = props => {
 
 
     }} >
-      <div style={{ marginRight: 10 }}><ReactCountryFlag code={isoCountryCode} /></div>
+      <div style={{ marginRight: 10 }}>
+        {_isoCountryCode && <ReactCountryFlag code={_isoCountryCode} />}
+      </div>
       <div
         className="truncate"
         style={{
